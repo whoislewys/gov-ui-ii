@@ -17,7 +17,7 @@ export function buildToastTransactionConfig(
         <ExternalLink
           href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
           text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
+          className="text-fiatWhite"
         />
       );
 

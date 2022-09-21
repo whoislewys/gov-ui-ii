@@ -16,7 +16,7 @@ interface ShareCardProps {
 
 export default function ShareCard({ className }: ShareCardProps): ReactElement {
   return (
-    <Card className={className} variant={CardVariant.BLUE}>
+    <Card className={className} variant={CardVariant.DARK_GRAY}>
       <div className="flex flex-col justify-center p-2 text-white sm:items-center sm:px-6 sm:py-4 sm:text-center">
         <h1 className="mb-5 text-3xl font-semibold">{t`Delegation Successful!`}</h1>
         <p className="mb-10 font-bold">{jt`Congratulations on delegating your ${InlineElfiLabel}.`}</p>

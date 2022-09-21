@@ -12,7 +12,35 @@ module.exports = {
     extend: {
       colors: {
         // Colors taken from:
-        // https://www.figma.com/file/SRw9lvgMAasN5JaQrK0z4t/Governance?node-id=1040%3A1303
+        // <todo>
+        // FIAT Colors
+        fiatWhite: "#EBE8F3",
+        fiatOffWhite: "#7f7f7f",
+        fiatLavender: {
+          DEFAULT: "#5C5166",
+          dark: "#4d4454",
+        },
+        fiatBlack: {
+          DEFAULT: "#030203",
+          dark: "#000000",
+        },
+        fiatDarkGray: {
+          DEFAULT: "#141116",
+          dark: "#0d0b0e", // convert color to HSL, decrease L by 3%
+        },
+        fiatLightGray: {
+          DEFAULT: "#7D6E8A",
+          dark: "#4d4455",
+        },
+        fiatYellow: {
+          DEFAULT: "#FFB238",
+        },
+        appBackgroundDark: "#020203",
+        fiatTangerine: "#FF9058",
+        fiatPurple: "#A873FF",
+        fiatRed: "#E96269",
+        // og element colors
+
         yieldLightBlue: "#75C7EE",
         yieldBlue: "#1568CA",
         denimBlue: "#7FBEEA",
@@ -28,7 +56,8 @@ module.exports = {
           DEFAULT: "#D1ECF1",
           dark: "#AADCE5",
         },
-        votingGreen: "#CDFFCD",
+        // votingGreen: "#CDFFCD",
+        fiatGreen: "#0FE196",
         deepRed: "#F73030",
         indianYellow: "#E1AF55",
         topaz: "#19C2A3",
@@ -54,6 +83,8 @@ module.exports = {
           DEFAULT: "#005EBE",
           dark: "#00368d",
         },
+
+        dividerGray: "#28252C"
       },
       fontFamily: {
         mono: [

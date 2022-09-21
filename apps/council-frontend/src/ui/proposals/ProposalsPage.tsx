@@ -6,15 +6,13 @@ import {
   useState,
   useEffect,
 } from "react";
-import { Proposal, ProposalsJson } from "@elementfi/council-proposals";
+import Head from "next/head";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExternalLinkIcon } from "@heroicons/react/solid";
-import { Signer } from "ethers";
-import Head from "next/head";
+import { useWeb3React } from "@web3-react/core";
+import { Proposal, ProposalsJson } from "@elementfi/council-proposals";
 import { t } from "ttag";
-import { useAccount, useSigner } from "wagmi";
 
-import { ProposalList } from "./ProposalList/ProposalList";
 import { ELEMENT_FINANCE_SNAPSHOT_URL } from "src/integrations/snapshot/endpoints";
 import AnchorButton from "src/ui/base/Button/AnchorButton";
 import { ButtonVariant } from "src/ui/base/Button/styles";
@@ -24,12 +22,15 @@ import {
   useIsTailwindSmallScreen,
   useIsTailwindLargeScreen,
 } from "src/ui/base/tailwindBreakpoints";
+import { useSigner } from "src/ui/signer/useSigner";
+import { ProposalList } from "./ProposalList/ProposalList";
 import {
   NoProposalsDetail,
   NoProposalsList,
 } from "src/ui/proposals/NoProposals";
 import { ProposalDetailsCard } from "src/ui/proposals/ProposalsDetailsCard/ProposalDetailsCard";
 import { useUnverifiedProposals } from "src/ui/proposals/useUnverifiedProposals";
+import { coreVotingContract } from "src/fiat-contracts";
 
 export enum TabId {
   ACTIVE = "active",
@@ -45,15 +46,18 @@ export default function ProposalsPage({
   proposalsJson,
   currentBlockNumber,
 }: ProposalsPageProps): ReactElement {
-  const { address } = useAccount();
-  const { data: signer } = useSigner();
+  const { account, library } = useWeb3React();
+  const signer = useSigner(account, library);
 
   const [activeTabId, setActiveTabId] = useState<TabId>(TabId.ACTIVE);
 
   const isTailwindSmallScreen = useIsTailwindSmallScreen();
   const isTailwindLargeScreen = useIsTailwindLargeScreen();
 
-  const unverifiedProposals = useUnverifiedProposals(proposalsJson.proposals);
+  const unverifiedProposals = useUnverifiedProposals(
+    proposalsJson.proposals,
+    coreVotingContract,
+  );
   const allProposals = proposalsJson.proposals.concat(unverifiedProposals);
 
   const activeProposals = useFilteredProposals(
@@ -172,7 +176,7 @@ export default function ProposalsPage({
     <ProposalDetailsCard
       key={selectedProposalId}
       onClose={handleOnClose}
-      account={address}
+      account={account}
       signer={signer}
       proposal={selectedProposal}
       unverified={!selectedProposal.snapshotId}
@@ -184,13 +188,12 @@ export default function ProposalsPage({
     (activeTabId === TabId.PAST && !pastProposals.length);
 
   return (
-    <div className="flex h-full lg:justify-center">
+    <div className="flex h-full w-full pr-8 pl-8 lg:justify-center xl:max-w-[1400px]">
       <Head>
-        <title>{t`Proposals | Element Council Protocol`}</title>
+        <title>{t`Proposals | Fiat Council Protocol`}</title>
       </Head>
 
       <div className="h-full w-full flex-1 space-y-8 pt-8 lg:max-w-lg lg:pr-8">
-        <H1 className="flex-1 text-center text-principalRoyalBlue">{t`On-chain Proposals`}</H1>
         <div className="flex justify-between gap-2">
           <Tabs aria-label={t`Filter proposals`}>
             <Tab
@@ -213,7 +216,7 @@ export default function ProposalsPage({
             <NoProposalsList activeTabId={activeTabId} />
           ) : (
             <ProposalList
-              account={address}
+              account={account}
               signer={signer}
               proposals={
                 activeTabId === TabId.ACTIVE ? activeProposals : pastProposals
@@ -247,7 +250,7 @@ export default function ProposalsPage({
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Dialog.Overlay className="fixed inset-0 bg-gray-500/75 transition-opacity" />
+                <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
               </Transition.Child>
 
               <Transition.Child
@@ -274,7 +277,7 @@ function OffChainProposalsLink() {
     <AnchorButton
       target="_blank"
       href={ELEMENT_FINANCE_SNAPSHOT_URL}
-      variant={ButtonVariant.SECONDARY}
+      variant={ButtonVariant.BLACK}
     >
       <div className="flex h-full items-center">
         <span className="mr-1">{t`Off-chain`}</span>

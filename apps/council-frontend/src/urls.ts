@@ -1,17 +1,17 @@
 export enum ElementUrl {
   // apps
-  CORE_LANDING = "https://element.fi",
-  CORE_APP = "https://app.element.fi",
-  NFT_APP = "https://elfiverse.element.fi",
+  CORE_LANDING = "https://fiatdao.com",
+  CORE_APP = "https://app.fiatdao.com",
+  NFT_APP = "",
   // socials
-  DISCORD = "https://element.fi/discord",
-  FORUM = "https://forum.element.fi",
+  DISCORD = "https://discord.com/invite/fiatdao",
+  FORUM = "https://commonwealth.im/fiat-dao/",
   TELEGRAM = "",
-  TWITTER = "https://twitter.com/element_fi",
+  TWITTER = "https://twitter.com/fiatdao",
   // resources
-  DOCS = "https://docs.element.fi/governance-council",
-  GITHUB = "https://github.com/element-fi",
-  MEDIUM = "https://medium.com/element-finance",
+  DOCS = "https://docs.fiatdao.com/",
+  GITHUB = "https://github.com/fiatdao",
+  MEDIUM = "https://medium.com/fiat-dao",
 }
 
 export default ElementUrl;

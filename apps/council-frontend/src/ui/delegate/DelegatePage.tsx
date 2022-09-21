@@ -1,10 +1,11 @@
 import { ReactElement, useEffect, useState } from "react";
+import Head from "next/head";
+
 import { ShieldExclamationIcon } from "@heroicons/react/solid";
+import { useWeb3React } from "@web3-react/core";
 import classNames from "classnames";
 import { Signer } from "ethers";
-import Head from "next/head";
 import { t } from "ttag";
-import { useAccount, useSigner } from "wagmi";
 
 import { useDelegate } from "src/ui/delegate/useDelegate";
 import { useChangeDelegation } from "src/ui/contracts/useChangeDelegation";
@@ -14,19 +15,17 @@ import DelegateCard from "src/ui/delegate/DelegateCard/DelegateCard";
 import DelegatesList from "src/ui/delegate/DelegatesList/DelegatesList";
 import WarningLabel from "src/ui/delegate/DelegateCard/WarningLabel";
 import { useResolvedEnsName } from "src/ui/ethereum/useResolvedEnsName";
-import { defaultProvider } from "src/providers/providers";
-
-const provider = defaultProvider;
 
 export default function DelegatePage(): ReactElement {
-  const { data: signer } = useSigner();
-  const { address } = useAccount();
+  const { account, library } = useWeb3React();
+  const signer = account ? (library?.getSigner(account) as Signer) : undefined;
+
   const [delegateAddressInput, setDelegateAddressInput] = useState("");
   const [selectedDelegate, setSelectedDelegate] = useState("");
 
   const { data: resolvedDelegateAddressInput } = useResolvedEnsName(
     delegateAddressInput,
-    provider,
+    library,
   );
 
   const {
@@ -34,11 +33,11 @@ export default function DelegatePage(): ReactElement {
     isLoading,
     isError,
     isSuccess,
-  } = useChangeDelegation(address, signer);
+  } = useChangeDelegation(account, signer);
 
-  const delegateAddressOnChain = useDelegate(address);
+  const delegateAddressOnChain = useDelegate(account);
 
-  const showNoConnectionWarning = !address;
+  const showNoConnectionWarning = !account;
 
   const renderWarning = () => {
     if (showNoConnectionWarning) {
@@ -57,7 +56,7 @@ export default function DelegatePage(): ReactElement {
     } else {
       setSelectedDelegate("");
     }
-  }, [address, resolvedDelegateAddressInput]);
+  }, [account, resolvedDelegateAddressInput]);
 
   return (
     <div
@@ -66,7 +65,7 @@ export default function DelegatePage(): ReactElement {
       })}
     >
       <Head>
-        <title>{t`Choose Delegate | Element Council Protocol`}</title>
+        <title>{t`Choose Delegate | Fiat Council Protocol`}</title>
       </Head>
 
       <div className="flex w-full max-w-4xl flex-col">
@@ -78,13 +77,12 @@ export default function DelegatePage(): ReactElement {
             </WarningLabel>
           </div>
         ) : null}
-
         {/* Delegates */}
         <div className="flex flex-col">
           {/* Delegates List */}
           <DelegatesList
-            account={address}
-            provider={provider}
+            account={account}
+            provider={library}
             changeDelegation={changeDelegation}
             isLoading={isLoading}
             isError={isError}
@@ -96,13 +94,13 @@ export default function DelegatePage(): ReactElement {
 
           {/* Delegate Card */}
           <Card
-            variant={CardVariant.BLUE}
+            variant={CardVariant.BLACK}
             className="mt-auto rounded-xl px-6 py-7"
           >
-            <H2 className="mb-4 text-2xl tracking-wide text-white">{t`My Delegate`}</H2>
+            <H2 className="mb-4 text-2xl tracking-wide text-fiatWhite">{t`My Delegate`}</H2>
             <DelegateCard
-              account={address}
-              provider={provider}
+              account={account}
+              provider={library}
               changeDelegation={changeDelegation}
               isLoading={isLoading}
               isSuccess={isSuccess}

@@ -11,21 +11,22 @@ interface TagProps {
 
 const intentTextColors: Record<Intent, string> = {
   [Intent.WARNING]: classNames("text-orange"),
-  [Intent.PRIMARY]: classNames("text-principalRoyalBlue"),
-  [Intent.PRIMARY_SOLID]: classNames("text-white"),
+  [Intent.PRIMARY]: classNames("text-fiatWhite"),
+  [Intent.PRIMARY_SOLID]: classNames("text-fiatWhite"),
   [Intent.SUCCESS]: classNames("text-statusGreen"),
   [Intent.ERROR]: classNames("text-deepRed"),
-  [Intent.BLANK]: classNames("text-principalRoyalBlue"),
+  [Intent.BLANK]: classNames("text-fiatWhite"),
 };
 
 const intentBackgroundColors: Record<Intent, string> = {
   [Intent.WARNING]: classNames("bg-lightOrange"),
-  [Intent.PRIMARY]: classNames("bg-hackerSky"),
+  [Intent.PRIMARY]: classNames("bg-fiatDarkGray"),
   [Intent.PRIMARY_SOLID]: classNames("bg-principalRoyalBlue"),
-  [Intent.SUCCESS]: classNames("bg-votingGreen"),
+  [Intent.SUCCESS]: classNames("bg-fiatGreen"),
   [Intent.ERROR]: classNames("bg-statusRed"),
   [Intent.BLANK]: classNames("bg-white"),
 };
+
 export function Tag({
   intent = Intent.PRIMARY,
   className,

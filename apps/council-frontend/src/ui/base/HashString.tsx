@@ -54,7 +54,7 @@ export default function HashString({
   };
 
   const inputClassName = classNames(
-    "placeholder:text-blueGrey px-4 h-12 bg-hackerSky border-blueGrey border box-border rounded-full text-principalRoyalBlue font-medium font-mono tracking-widest w-full sm:w-auto max-w-full",
+    "placeholder:text-blueGrey px-4 h-12 bg-fiatLightGray border-blueGrey border box-border rounded-full text-fiatWhite font-medium font-mono tracking-widest w-full sm:w-auto max-w-full",
     inputClassNameFromProps,
   );
 
@@ -117,7 +117,7 @@ export default function HashString({
 
           <span
             className={classNames(
-              "pointer-events-none absolute inset-0 m-px flex items-center justify-center gap-1 rounded-full bg-topaz text-white opacity-0 transition-opacity",
+              "bg-topaz pointer-events-none absolute inset-0 m-px flex items-center justify-center gap-1 rounded-full text-white opacity-0 transition-opacity",
               copied && "opacity-100",
             )}
           >
@@ -129,7 +129,7 @@ export default function HashString({
           <Button
             round
             variant={ButtonVariant.WHITE}
-            className="flex gap-2 text-principalRoyalBlue"
+            className="text-fiatWhite flex gap-2"
             disabled={!value}
             onClick={handleCopyClick}
           >

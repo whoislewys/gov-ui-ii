@@ -21,7 +21,7 @@ export function NumDelegatedVotes(props: NumDelegatedVotesProps): ReactElement {
   return (
     <div
       className={classNames(
-        highlightSelected && selected ? "text-gray-400" : "text-blueGrey",
+        highlightSelected && selected ? "text-fiatWhite" : "text-fiatOffWhite",
         "flex",
         "items-center",
       )}

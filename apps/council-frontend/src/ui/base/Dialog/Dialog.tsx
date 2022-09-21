@@ -51,7 +51,7 @@ export default function SimpleDialog(props: SimpleDialogProps): ReactElement {
             <div
               className={classNames(
                 className,
-                "relative inline-block transform-gpu overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle",
+                "bg-fiatDarkGray relative inline-block transform-gpu overflow-hidden rounded-lg px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle",
               )}
             >
               {children}

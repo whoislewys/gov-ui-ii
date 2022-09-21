@@ -12,11 +12,11 @@ import { gscCoreVotingContract } from "src/contracts";
 import { useLatestBlockNumber } from "src/ui/ethereum/useLatestBlockNumber";
 import { Ballot } from "src/ui/voting/Ballot";
 
-const { gscVault: gscVaultAddress } = addressesJson.addresses;
+// const { gscVault: gscVaultAddress } = addressesJson.addresses;
 
 export function useGSCVote(
   account: string | undefined | null,
-  signer: Signer | null | undefined,
+  signer: Signer | undefined,
   proposalCreatedAtBlockNumber: number,
   options?: UseSmartContractTransactionOptions<CoreVoting, "vote">,
 ): {
@@ -25,38 +25,42 @@ export function useGSCVote(
   isSuccess: boolean;
   isError: boolean;
 } {
-  const { data: latestBlockNumber } = useLatestBlockNumber();
+  // const { data: latestBlockNumber } = useLatestBlockNumber();
 
-  const {
-    mutate: vote,
-    isLoading,
-    isSuccess,
-    isError,
-  } = useSmartContractTransaction(
-    gscCoreVotingContract,
-    "vote",
-    signer,
-    options,
-  );
+  // const {
+  //   mutate: vote,
+  //   isLoading,
+  //   isSuccess,
+  //   isError,
+  // } = useSmartContractTransaction(
+  //   gscCoreVotingContract,
+  //   "vote",
+  //   signer,
+  //   options,
+  // );
 
-  const onVote = useCallback(
-    (proposalId: string, ballot: Ballot) => {
-      const blockNumber = proposalCreatedAtBlockNumber || latestBlockNumber;
+  // const onVote = useCallback(
+  //   (proposalId: string, ballot: Ballot) => {
+  //     const blockNumber = proposalCreatedAtBlockNumber || latestBlockNumber;
 
-      if (!blockNumber || !account) {
-        return;
-      }
+  //     if (!blockNumber || !account) {
+  //       return;
+  //     }
 
-      // We should not include any vaults that the user has 0 voting power in
-      // when casting a vote to save gas
-      const votingVaults: string[] = [gscVaultAddress];
-      // extra data is not needed for the gsc vault to query vote power, stub with empty value
-      const extraDatas: string[] = ["0x00"];
+  //     // We should not include any vaults that the user has 0 voting power in
+  //     // when casting a vote to save gas
+  //     const votingVaults: string[] = [gscVaultAddress];
+  //     // extra data is not needed for the gsc vault to query vote power, stub with empty value
+  //     const extraDatas: string[] = ["0x00"];
 
-      vote([votingVaults, extraDatas, Number(proposalId), ballot]);
-    },
-    [account, proposalCreatedAtBlockNumber, latestBlockNumber, vote],
-  );
+  //     vote([votingVaults, extraDatas, Number(proposalId), ballot]);
+  //   },
+  //   [account, proposalCreatedAtBlockNumber, latestBlockNumber, vote],
+  // );
 
+  const onVote = (proposalId: string, ballot: Ballot) => null;
+  const isLoading = false;
+  const isSuccess = false;
+  const isError = true;
   return { mutate: onVote, isLoading, isSuccess, isError };
 }

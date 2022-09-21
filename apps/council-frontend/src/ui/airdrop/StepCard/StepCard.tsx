@@ -26,7 +26,7 @@ export function StepCard({
 }: StepCardProps): ReactElement {
   return (
     <Card
-      variant={CardVariant.BLUE}
+      variant={CardVariant.DARK_GRAY}
       className={classNames("flex flex-col text-white", className)}
     >
       {/* Extra div because we can't override padding set by Card */}

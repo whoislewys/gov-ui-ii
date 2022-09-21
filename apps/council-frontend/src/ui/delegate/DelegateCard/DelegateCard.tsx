@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useEffect } from "react";
 import { ButtonVariant } from "src/ui/base/Button/styles";
-import { delegates } from "src/delegates/delegates";
+import { delegates } from "src/elf-council-delegates/delegates";
 import { t } from "ttag";
 import CurrentDelegate from "src/ui/delegate/DelegateCard/CurrentDelegate";
 import classNames from "classnames";
@@ -129,7 +129,7 @@ function DelegateCard(props: DelegateCardProps): ReactElement {
 function NoDelegate(): ReactElement {
   return (
     // 112px is the height CurrentDelegate; this is a placeholder for CurrentDelegate
-    <div className="grid h-[112px] w-full place-items-center rounded-xl bg-white font-bold text-principalRoyalBlue md:w-full lg:w-1/2">
+    <div className="text-fiatLightGray bg-fiatDarkGray grid h-[112px] w-full place-items-center rounded-xl font-bold md:w-full lg:w-1/2">
       <span>{t`No current delegation`}</span>
     </div>
   );

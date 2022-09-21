@@ -17,12 +17,12 @@ import { Ballot } from "src/ui/voting/Ballot";
 import { useLockingVaultVotingPower } from "src/ui/voting/useLockingVaultVotingPower";
 import { useVestingVaultVotingPower } from "src/ui/voting/useVestingVaultVotingPower";
 
-const { lockingVault: lockingVaultAddress, vestingVault: vestingVaultAddress } =
-  addressesJson.addresses;
+// const { lockingVault: lockingVaultAddress, vestingVault: vestingVaultAddress } =
+//   addressesJson.addresses;
 
 export function useVote(
   account: string | undefined | null,
-  signer: Signer | null | undefined,
+  signer: Signer | undefined,
   proposalCreatedAtBlockNumber: number,
   options?: UseSmartContractTransactionOptions<CoreVoting, "vote">,
 ): {
@@ -31,62 +31,67 @@ export function useVote(
   isSuccess: boolean;
   isError: boolean;
 } {
-  const { data: latestBlockNumber } = useLatestBlockNumber();
+  // const { data: latestBlockNumber } = useLatestBlockNumber();
 
-  const {
-    mutate: vote,
-    isLoading,
-    isSuccess,
-    isError,
-  } = useSmartContractTransaction(coreVotingContract, "vote", signer, options);
+  // const {
+  //   mutate: vote,
+  //   isLoading,
+  //   isSuccess,
+  //   isError,
+  // } = useSmartContractTransaction(coreVotingContract, "vote", signer, options);
 
-  const lockingVaultVotingPower = useLockingVaultVotingPower(
-    account,
-    proposalCreatedAtBlockNumber,
-  );
+  // const lockingVaultVotingPower = useLockingVaultVotingPower(
+  //   account,
+  //   proposalCreatedAtBlockNumber,
+  // );
 
-  const vestingVaultVotingPower = useVestingVaultVotingPower(
-    account,
-    proposalCreatedAtBlockNumber,
-  );
+  // const vestingVaultVotingPower = useVestingVaultVotingPower(
+  //   account,
+  //   proposalCreatedAtBlockNumber,
+  // );
 
-  const onVote = useCallback(
-    (proposalId: string, ballot: Ballot) => {
-      const blockNumber = proposalCreatedAtBlockNumber || latestBlockNumber;
+  // const onVote = useCallback(
+  //   (proposalId: string, ballot: Ballot) => {
+  //     const blockNumber = proposalCreatedAtBlockNumber || latestBlockNumber;
 
-      if (!blockNumber || !account) {
-        return;
-      }
+  //     if (!blockNumber || !account) {
+  //       return;
+  //     }
 
-      // We should not include any vaults that the user has 0 voting power in
-      // when casting a vote to save gas
-      const votingVaults: string[] = [];
-      const extraDatas: string[] = [];
+  //     // We should not include any vaults that the user has 0 voting power in
+  //     // when casting a vote to save gas
+  //     const votingVaults: string[] = [];
+  //     const extraDatas: string[] = [];
 
-      if (+lockingVaultVotingPower > 0) {
-        votingVaults.push(lockingVaultAddress);
-        const extraData = getEmptyCallDatas();
-        extraDatas.push(extraData);
-      }
+  //     if (+lockingVaultVotingPower > 0) {
+  //       votingVaults.push(lockingVaultAddress);
+  //       const extraData = getEmptyCallDatas();
+  //       extraDatas.push(extraData);
+  //     }
 
-      if (+vestingVaultVotingPower > 0) {
-        votingVaults.push(vestingVaultAddress);
-        const extraData = getEmptyCallDatas();
-        extraDatas.push(extraData);
-      }
+  //     if (+vestingVaultVotingPower > 0) {
+  //       votingVaults.push(vestingVaultAddress);
+  //       const extraData = getEmptyCallDatas();
+  //       extraDatas.push(extraData);
+  //     }
 
-      vote([votingVaults, extraDatas, Number(proposalId), ballot]);
-    },
-    [
-      account,
-      proposalCreatedAtBlockNumber,
-      latestBlockNumber,
-      lockingVaultVotingPower,
-      vestingVaultVotingPower,
-      vote,
-    ],
-  );
+  //     vote([votingVaults, extraDatas, Number(proposalId), ballot]);
+  //   },
+  //   [
+  //     account,
+  //     proposalCreatedAtBlockNumber,
+  //     latestBlockNumber,
+  //     lockingVaultVotingPower,
+  //     vestingVaultVotingPower,
+  //     vote,
+  //   ],
+  // );
 
+  // return { mutate: onVote, isLoading, isSuccess, isError };
+  const onVote = (proposalId: string, ballot: Ballot) => null;
+  const isLoading = false;
+  const isSuccess = false;
+  const isError = true;
   return { mutate: onVote, isLoading, isSuccess, isError };
 }
 

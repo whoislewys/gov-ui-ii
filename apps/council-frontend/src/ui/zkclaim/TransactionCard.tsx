@@ -14,6 +14,7 @@ import Button from "src/ui/base/Button/Button";
 import { ButtonVariant } from "src/ui/base/Button/styles";
 import { getFeaturedDelegate } from "src/delegates/isFeaturedDelegate";
 import { WalletJazzicon } from "src/ui/wallet/WalletJazzicon";
+import { ConnectWalletDialog } from "src/ui/wallet/ConnectWalletDialog";
 import { commify } from "ethers/lib/utils";
 import { jt, t } from "ttag";
 import { useFormattedWalletAddress } from "src/ui/ethereum/useFormattedWalletAddress";
@@ -25,13 +26,12 @@ import { Spinner } from "src/ui/base/Spinner/Spinner";
 import { pedersenHash, toHex } from "zkp-merkle-airdrop-lib";
 import useClaimableAmount from "./useClaimableAmount";
 import { PrivateAirdrop } from "@elementfi/council-typechain";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 interface TransactionCardProps {
   className?: string;
   account: string | null | undefined;
   provider: Provider | undefined;
-  signer: Signer | null | undefined;
+  signer: Signer | undefined;
   isReady: boolean;
   contract: PrivateAirdrop | undefined;
   generateProof: () => Promise<string> | undefined;
@@ -56,6 +56,8 @@ export default function TransactionCard({
   onSuccess,
   onNextStep,
 }: TransactionCardProps): ReactElement {
+  const [isWalletDialogOpen, setWalletDialogOpen] = useState(false);
+  const onCloseWalletDialog = useCallback(() => setWalletDialogOpen(false), []);
   const claimableAmount = useClaimableAmount(contract);
   const formattedAddress = useFormattedWalletAddress(delegateAddress, provider);
   const delegateLabel =
@@ -63,8 +65,6 @@ export default function TransactionCard({
   const [isTransactionPending, setIsTransactionPending] = useState(false);
   const [success, setSuccess] = useState(false);
   const toastIdRef = useRef<string>();
-
-  const { openConnectModal } = useConnectModal();
   const { mutate: claimAndDelegate } = useClaimAndDelegate(signer, contract, {
     onError: (e) => {
       toast.error(e.message, { id: toastIdRef.current });
@@ -74,7 +74,7 @@ export default function TransactionCard({
         <ExternalLink
           href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
           text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
+          className="text-fiatWhite"
         />
       );
 
@@ -109,13 +109,17 @@ export default function TransactionCard({
   };
   return (
     <>
-      <Card className={className} variant={CardVariant.BLUE}>
+      <ConnectWalletDialog
+        isOpen={isWalletDialogOpen}
+        onClose={onCloseWalletDialog}
+      />
+      <Card className={className} variant={CardVariant.DARK_GRAY}>
         <div className="flex flex-col gap-2 p-2 text-white sm:px-6 sm:py-4">
           <div className="mb-8 text-center text-white sm:items-center sm:px-10 sm:text-center md:px-32">
             <h1 className="mb-10 text-3xl font-semibold">{t`Review Transaction`}</h1>
             <div className="flex min-w-full flex-col gap-10 rounded-lg bg-white px-14 pt-8 pb-10 text-center shadow-[0_0_52px_rgba(143,216,231,.7)]">
               <div>
-                <p className="mb-1 text-lg font-bold text-principalRoyalBlue text-opacity-60">
+                <p className="text-fiatWhite mb-1 text-lg font-bold text-opacity-60">
                   {t`Claimable voting power`}
                 </p>
                 <div className="flex items-center justify-center gap-3">
@@ -123,14 +127,14 @@ export default function TransactionCard({
                     className="bg-paleLily"
                     size={IconSize.MEDIUM}
                   />
-                  <p className="text-3xl font-semibold text-principalRoyalBlue">
+                  <p className="text-fiatWhite text-3xl font-semibold">
                     {t`${commify(claimableAmount)} ELFI`}
                   </p>
                 </div>
               </div>
 
               <div>
-                <p className="mb-1 text-lg font-bold text-principalRoyalBlue text-opacity-60">
+                <p className="text-fiatWhite mb-1 text-lg font-bold text-opacity-60">
                   {t`will be delegated to`}
                 </p>
                 <div className="flex items-center justify-center gap-3">
@@ -139,7 +143,7 @@ export default function TransactionCard({
                     account={delegateAddress}
                     size={24}
                   />
-                  <p className="text-3xl font-semibold text-principalRoyalBlue">
+                  <p className="text-fiatWhite text-3xl font-semibold">
                     {delegateLabel}
                   </p>
                 </div>
@@ -196,7 +200,7 @@ export default function TransactionCard({
               <Button
                 className="px-12"
                 variant={ButtonVariant.GRADIENT}
-                onClick={openConnectModal}
+                onClick={() => setWalletDialogOpen(true)}
               >
                 {t`Connect Wallet`}
               </Button>

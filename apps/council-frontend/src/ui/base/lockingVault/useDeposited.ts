@@ -1,20 +1,20 @@
 import { useSmartContractReadCall } from "@elementfi/react-query-typechain/src/hooks/useSmartContractReadCall/useSmartContractReadCall";
 import { formatEther } from "@ethersproject/units";
-import { lockingVaultContract } from "src/contracts";
+import {
+  votingEscrowContract,
+} from "src/fiat-contracts";
 
 export function useDeposited(
   address: string | undefined | null,
 ): string | undefined {
-  const { data: depositInfo } = useSmartContractReadCall(
-    lockingVaultContract,
-    "deposits",
+  const { data: veVotingPowerBN } = useSmartContractReadCall(
+    votingEscrowContract,
+    "balanceOf",
     {
       callArgs: [address as string],
       enabled: !!address,
     },
   );
 
-  const [, depositBN] = depositInfo || [];
-
-  return depositBN && formatEther(depositBN || 0);
+  return veVotingPowerBN && formatEther(veVotingPowerBN);
 }

@@ -1,6 +1,8 @@
 import { ChangeEvent, ReactElement, useCallback } from "react";
 
 import classNames from "classnames";
+import Button from "src/ui/base/Button/Button";
+import { ButtonSize, ButtonVariant } from "src/ui/base/Button/styles";
 import { t } from "ttag";
 
 interface TokenInputProps {
@@ -57,13 +59,13 @@ export default function TokenInput({
           name={name}
           id={id}
           className={classNames(
-            "block w-full rounded-md border-gray-300 text-black shadow-sm sm:text-sm",
+            "bg-fiatDarkGray border-fiatLightGray text-fiatWhite placeholder-fiatLightGray block h-12 w-full rounded-md shadow-sm sm:text-sm",
             {
-              "focus:border-brandDarkBlue": !error,
-              "focus:border-red-500": error,
-              "border-red-500": error,
-              "focus:ring-brandDarkBlue": !error,
-              "focus:ring-red-500": error,
+              "focus:border-fiatLightGray": !error,
+              "focus:ring-fiatLightGray": !error,
+              "focus:border-fiatRed": error,
+              "border-fiatRed": error,
+              "focus:ring-fiatRed": error,
             },
             inputClassName,
           )}
@@ -72,13 +74,15 @@ export default function TokenInput({
           onChange={onInputChange}
         />
         {showMaxButton && maxValue ? (
-          <button
-            className="absolute top-1/2 right-3 -translate-y-1/2 rounded-md bg-principalRoyalBlue px-2 py-1"
+          <Button
+            className="absolute top-1/2 right-3 -translate-y-1/2 rounded-md px-2 py-1"
+            variant={ButtonVariant.OUTLINE_LAVENDER}
+            size={ButtonSize.SMALL}
             onClick={() => onChange(maxValue)}
             disabled={disabled}
           >
-            <span className="text-xs text-white">{t`MAX`}</span>
-          </button>
+            <span className="text-xs text-fiatWhite">{t`MAX`}</span>
+          </Button>
         ) : null}
       </div>
     </div>

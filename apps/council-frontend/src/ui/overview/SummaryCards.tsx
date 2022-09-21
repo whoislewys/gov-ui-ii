@@ -1,24 +1,31 @@
 import React, { ReactElement } from "react";
 
-// import { ProposalsJson } from "@elementfi/council-proposals";
+import { ProposalsJson } from "@elementfi/council-proposals";
 import { t } from "ttag";
 
 import { abbreviateLargeValue } from "src/base/numbers";
+import { useLatestBlockNumber } from "src/ui/ethereum/useLatestBlockNumber";
 import SummaryCard from "src/ui/overview/SummaryCard";
 import { useVotingPowerForProtocol } from "src/ui/voting/useVotingPowerForProtocol";
 import Link from "next/link";
-import { useGetSummaryCardsDataQuery } from "src/graphql/generated";
-import { addressesJson } from "src/addresses";
+import useNumDelegates from "./useNumDelegates";
 
-export function SummaryCards(): ReactElement {
-  const { data } = useGetSummaryCardsDataQuery({
-    variables: {
-      contract: addressesJson.addresses.coreVoting,
-    },
-  });
+interface SummaryCardsProps {
+  proposalsJson: ProposalsJson;
+}
+export function SummaryCards({
+  proposalsJson,
+}: SummaryCardsProps): ReactElement {
+  const { data: currentBlock } = useLatestBlockNumber();
+  // TODO: double check these are coming through correctly once https://github.com/fiatdao/gov-ui-v2/issues/17 is implemented
+  const numActiveProposals = currentBlock
+    ? proposalsJson.proposals.filter(
+        ({ expiration }) => expiration > currentBlock,
+      ).length
+    : 0;
 
-  const numActiveProposals = data?.votingContract?.proposalCount || 0;
-  const numDelegates = data?.votingContract?.voterCount || 0;
+  const numDelegates = useNumDelegates();
+
   const votingPower = useVotingPowerForProtocol();
 
   const formattedTotalVotingPower = abbreviateLargeValue(
@@ -40,7 +47,7 @@ export function SummaryCards(): ReactElement {
       />
       <SummaryCard
         title={t`Total Participants`}
-        balance={numDelegates}
+        balance={`TODO: (fake number): ${numDelegates}`}
         tooltipContent={t`The number of unique delegates (including self-delegates) with voting power in the system.`}
       />
       <SummaryCard

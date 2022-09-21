@@ -24,13 +24,13 @@ function getTextColor(current: boolean): string {
   if (current) {
     return classNames("text-white hover:text-white");
   }
-  return classNames("text-yieldBlue");
+  return classNames("text-fiatWhite");
 }
 
 function getBackgroundColor(current: boolean): string {
   return current
-    ? classNames("bg-principalRoyalBlue")
-    : classNames("bg-hackerSky");
+    ? classNames("bg-gradient-to-r from-fiatTangerine to-fiatPurple")
+    : classNames("bg-fiatBlack");
 }
 
 function getBorderRadius(first: boolean, last: boolean) {
@@ -47,7 +47,7 @@ function getBorderRadius(first: boolean, last: boolean) {
 function getFocusRing(current: boolean): string {
   if (current) {
     return classNames(
-      "focus:ring-white ring-inset focus:border-0 focus:ring-4 focus:shadow-none",
+      "focus:ring-white ring-inset focus:border-0 focus:ring-2 focus:shadow-none",
     );
   }
 
@@ -56,9 +56,9 @@ function getFocusRing(current: boolean): string {
 
 function getBorderColor(current: boolean): string {
   if (current) {
-    return classNames("border-paleLily hover:border-clay");
+    return classNames("border-fiatLightGray hover:fiatLavender");
   }
-  return classNames("border-gray-200 hover:border-gray-300");
+  return classNames("border-fiatDarkGray hover:fiatLightGray-dark");
 }
 
 interface TabProps {

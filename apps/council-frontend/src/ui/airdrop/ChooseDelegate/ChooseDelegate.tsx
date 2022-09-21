@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback, useMemo, useState } from "react";
 import { CheckCircleIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import { delegates } from "src/delegates/delegates";
+import { delegates } from "src/elf-council-delegates/delegates";
 import { StepCard } from "src/ui/airdrop/StepCard/StepCard";
 import Button from "src/ui/base/Button/Button";
 import { ButtonVariant } from "src/ui/base/Button/styles";
@@ -233,7 +233,7 @@ export function ChooseDelegate({
                   }
                   containerClassName="flex-1"
                   className={classNames(
-                    "mb-4 h-12 flex-1 text-left text-principalRoyalBlue placeholder-principalRoyalBlue",
+                    "text-fiatWhite placeholder-fiatWhite mb-4 h-12 flex-1 text-left",
                     {
                       "pr-12": resolvedCustomDelegateAddress,
                     },

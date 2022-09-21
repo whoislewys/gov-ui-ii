@@ -3,6 +3,8 @@ import { addressesJson } from "src/addresses";
 import { ChainId } from "@elementfi/base";
 
 export const PROPOSALS_JSON_URL = getProposalsJsonUrl();
+// TODO: move proposals in here ackshually
+// export const proposalsFile = getProposalsJsonUrl();
 export const GSC_PROPOSALS_JSON_URL = getGscProposalsJsonUrl();
 
 function getProposalsJsonUrl() {

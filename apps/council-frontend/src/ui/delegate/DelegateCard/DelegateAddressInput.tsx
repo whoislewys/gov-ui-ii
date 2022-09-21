@@ -28,7 +28,7 @@ function DelegateAddressInput(props: DelegateAddressInputProps): ReactElement {
         name={t`Enter delegate address`}
         placeholder={t`Enter delegate address`}
         className={classNames(
-          "h-12 text-left text-principalRoyalBlue placeholder-principalRoyalBlue",
+          "text-fiatWhite placeholder-fiatLightGray bg-fiatDarkGray h-12 text-left",
           { "pr-12": !!selectedDelegate },
         )}
         value={delegateAddressInput}

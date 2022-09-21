@@ -1,8 +1,7 @@
 import { FixedNumber } from "ethers";
 import { useLatestBlockNumber } from "src/ui/ethereum/useLatestBlockNumber";
-
-import { useLockingVaultVotingPower } from "src/ui/voting/useLockingVaultVotingPower";
 import { useVestingVaultVotingPower } from "src/ui/voting/useVestingVaultVotingPower";
+import { useVotingEscrowVaultVotingPower } from "src/ui/voting/useVotingEscrowVaultVotingPower";
 
 export function useVotingPowerForAccountAtLatestBlock(
   account: string | undefined | null,
@@ -25,13 +24,22 @@ export function useVotingPowerForAccountAtBlockNumber(
 function useVotingPowerForAccount(
   account: string | undefined | null,
   atBlockNumber?: number,
+  atTimestamp?: number,
 ): string {
-  const vestingVaultPower = useVestingVaultVotingPower(account, atBlockNumber);
-  const lockingVotingPower = useLockingVaultVotingPower(account, atBlockNumber);
+  // const vestingVaultPower = useVestingVaultVotingPower(account, atBlockNumber, atTimestamp);
+  // console.log("vesting power: ", vestingVaultPower);
+  // const lockingVotingPower = useLockingVaultVotingPower(account, atBlockNumber);
+  const votingEscrowVaultPower = useVotingEscrowVaultVotingPower(
+    account,
+    atBlockNumber,
+    atTimestamp,
+  );
+  // TODO: add comitium vote power
 
-  const votingPower = FixedNumber.from(lockingVotingPower)
-    .addUnsafe(FixedNumber.from(vestingVaultPower || "0"))
-    .toString();
+  return votingEscrowVaultPower.toString();
+  // const votingPower = FixedNumber.from(votingEscrowVaultPower)
+  //   .addUnsafe(FixedNumber.from(vestingVaultPower || "0"))
+  //   .toString();
 
-  return votingPower;
+  // return votingPower;
 }

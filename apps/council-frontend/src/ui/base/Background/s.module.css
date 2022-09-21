@@ -1,0 +1,94 @@
+.blob1 {
+  z-index: -1;
+
+  /* Imported rom Fiat UI Redesign */
+  --dimensions: 400px;
+  --displacement: -150px;
+
+  background: var(--theme-orange-color);
+  height: var(--dimensions);
+  filter: blur(300px);
+  left: calc(50% + var(--displacement));
+  transform: matrix(0.51, 0.85, -0.89, 0.49, 0, 0) translate(calc(-50% + var(--displacement)));
+  top: 65%;
+  position: absolute;
+  width: var(--dimensions);
+
+  @media (max-width: 1439px) {
+    left: calc(50% + var(--displacement) - 64px);
+    transform: matrix(0.51, 0.85, -0.89, 0.49, 0, 0) translate(calc(-50% + var(--displacement) - 64px));
+  }
+
+  /* Imported From Figma */
+
+  /* position: absolute;
+  width: 491.41px;
+  height: 481.01px;
+  left: 663.99px;
+  top: 154.01px;
+
+  background: #FF9058;
+  filter: blur(200px);
+  transform: matrix(0.49, 0.89, -0.84, 0.51, 0, 0); */
+}
+
+.blob2 {
+  z-index: -1;
+
+  /* Imported rom Fiat UI Redesign */
+  background: radial-gradient(50% 50% at 50% 50%, var(--radial-gradient-pink) 0%, var(--radial-gradient-transparent), 100%);
+  height: 901px;
+  left: 50%;
+  opacity: 0.25;
+  position: absolute;
+  transform: translate(-50%);
+  top: 0px;
+  width: 935.08px;
+
+  /* Imported From Figma */
+
+  /* z-index: -1;
+  position: absolute;
+  width: 935.08px;
+  height: 977.06px;
+  left: 359.02px;
+  top: -95px;
+
+  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 80, 139, 0.37) 0%, rgba(255, 80, 139, 0) 100%);
+  opacity: 0.25; */
+  }
+
+.blob3 {
+  z-index: -1;
+
+  /* Imported rom Fiat UI Redesign */
+  --dimensions: 400px;
+  --displacement: 214px;
+
+  background: var(--theme-purple-color);
+  height: var(--dimensions);
+  filter: blur(300px);
+  left: calc(50% + var(--displacement));
+  transform: matrix(0.51, 0.85, -0.89, 0.49, 0, 0) translate(calc(-50% + var(--displacement)));
+  top: 45%;
+  position: absolute;
+  width: var(--dimensions);
+
+  @media (max-width: 1439px) {
+    left: calc(50% + var(--displacement) - 64px);
+    transform: matrix(0.51, 0.85, -0.89, 0.49, 0, 0) translate(calc(-50% + var(--displacement) - 64px));
+  }
+
+  /* Imported From Figma */
+  
+  /* z-index: -1;
+  position: absolute;
+  width: 491.41px;
+  height: 481.01px;
+  left: 1160.18px;
+  top: 245.84px;
+
+  background: #A873FF;
+  filter: blur(200px);
+  transform: matrix(0.49, 0.89, -0.84, 0.51, 0, 0); */
+}

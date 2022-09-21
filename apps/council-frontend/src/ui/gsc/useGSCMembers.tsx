@@ -3,7 +3,7 @@ import { useSmartContractEvents } from "@elementfi/react-query-typechain/src/hoo
 import { BigNumber } from "ethers";
 import { gscVaultContract } from "src/contracts";
 import zip from "lodash.zip";
-import { Delegate } from "@elementfi/council-delegates";
+import { Delegate } from "src/elf-council-delegates/delegates";
 
 export function useGSCMembers(): QueryObserverResult<Delegate[]> {
   // grab membership approved events
@@ -39,12 +39,9 @@ export function useGSCMembers(): QueryObserverResult<Delegate[]> {
         .map(([address]) => address) // only care about the addressthrow away the timestamp now
         .filter((address): address is string => !!address); // typeguard so (string | undefined)[] -> string[]
 
-      return validMembers.map(
-        (address): Delegate => ({
-          address,
-          createdAt: "",
-        }),
-      );
+      return validMembers.map((address) => ({
+        address,
+      }));
     },
     queryKey: ["gsc-members"],
     enabled: !!events?.length,

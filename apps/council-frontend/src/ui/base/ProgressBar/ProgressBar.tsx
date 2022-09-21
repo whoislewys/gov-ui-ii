@@ -17,11 +17,11 @@ export function ProgressBar(props: ProgressBarProps): ReactElement {
   }
 
   return (
-    <div className="relative h-3 w-full rounded-full bg-sky-300 bg-opacity-50 ">
+    <div className="bg-fiatLavender-dark relative h-3 w-full rounded-full bg-opacity-50 ">
       <div
         style={{ width: `${percentComplete}%` }}
         className={`h-full rounded-full text-center text-xs text-white ${
-          color ?? "bg-sky-300"
+          color ?? "bg-fiatLavender"
         }`}
       ></div>
       {!!barPosition && enableBar && (
@@ -32,7 +32,7 @@ export function ProgressBar(props: ProgressBarProps): ReactElement {
             left: `${barPosition}%`,
             top: "-50%",
           }}
-          className="absolute top-0 h-full rounded border border-white bg-principalRoyalBlue"
+          className="bg-principalRoyalBlue absolute top-0 h-full rounded border border-white"
         ></div>
       )}
     </div>

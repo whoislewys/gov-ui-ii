@@ -6,12 +6,12 @@ import {
   useMemo,
   useState,
 } from "react";
+
 import { Proposal, ProposalsJson } from "@elementfi/council-proposals";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExternalLinkIcon } from "@heroicons/react/solid";
-import { Signer } from "ethers";
+import { useWeb3React } from "@web3-react/core";
 import { t } from "ttag";
-import { useAccount, useSigner } from "wagmi";
 
 import { ELEMENT_FINANCE_GSC_SNAPSHOT_URL } from "src/integrations/snapshot/endpoints";
 import AnchorButton from "src/ui/base/Button/AnchorButton";
@@ -22,6 +22,8 @@ import {
   useIsTailwindLargeScreen,
   useIsTailwindSmallScreen,
 } from "src/ui/base/tailwindBreakpoints";
+import { useSigner } from "src/ui/signer/useSigner";
+
 import { ProposalList } from "src/ui/proposals/ProposalList/ProposalList";
 import {
   NoProposalsDetail,
@@ -40,8 +42,8 @@ export default function GSCProposalsSection({
   proposalsJson,
   currentBlockNumber,
 }: ProposalsSectionProps): ReactElement {
-  const { address } = useAccount();
-  const { data: signer } = useSigner();
+  const { account, library } = useWeb3React();
+  const signer = useSigner(account, library);
 
   // set the default to the first active proposal, since that's what filter is
   // on by default
@@ -165,7 +167,7 @@ export default function GSCProposalsSection({
     <GSCProposalDetailsCard
       key={selectedProposalId}
       onClose={handleOnClose}
-      account={address}
+      account={account}
       signer={signer}
       proposal={selectedProposal}
       unverified={!selectedProposal.snapshotId}
@@ -179,7 +181,7 @@ export default function GSCProposalsSection({
   return (
     <div className="flex h-full w-full lg:justify-center">
       <div className="h-full w-full flex-1 space-y-8 pt-8 lg:max-w-lg lg:pr-8">
-        <H1 className="flex-1 text-center text-principalRoyalBlue">{t`GSC On-chain Proposals`}</H1>
+        <H1 className="text-fiatWhite flex-1 text-center">{t`GSC On-chain Proposals`}</H1>
         <div className="flex justify-between gap-2">
           <Tabs aria-label={t`Filter proposals`}>
             <Tab
@@ -203,7 +205,7 @@ export default function GSCProposalsSection({
           ) : (
             <ProposalList
               isGSCProposal
-              account={address}
+              account={account}
               signer={signer}
               proposals={
                 activeTabId === TabId.ACTIVE ? activeProposals : pastProposals
@@ -237,7 +239,7 @@ export default function GSCProposalsSection({
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Dialog.Overlay className="fixed inset-0 bg-gray-500/75 transition-opacity" />
+                <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
               </Transition.Child>
 
               <Transition.Child

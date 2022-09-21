@@ -19,7 +19,7 @@ interface ReviewTransactionProps {
   account: string | null | undefined;
   provider?: Provider;
   delegateAddress: string;
-  signer: Signer | null | undefined;
+  signer: Signer | undefined;
   onPrevStep: () => void;
   onNextStep: () => void;
 }
@@ -47,7 +47,7 @@ export function ReviewTransaction({
         <ExternalLink
           href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
           text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
+          className="text-fiatWhite"
         />
       );
 

@@ -38,7 +38,7 @@ const StatusTagIntents: Record<ProposalStatus, Intent> = {
 };
 
 interface ProposalStatusIconProps {
-  signer: Signer | null | undefined;
+  signer: Signer | undefined;
   proposal: Proposal;
   disableTooltip?: boolean;
   isGSCProposal?: boolean;
@@ -99,8 +99,8 @@ export function ProposalStatusIcon({
 
 const intentTextColors: Record<Intent, string> = {
   [Intent.WARNING]: classNames("text-orange"),
-  [Intent.PRIMARY]: classNames("text-principalRoyalBlue"),
-  [Intent.PRIMARY_SOLID]: classNames("text-white"),
+  [Intent.PRIMARY]: classNames("text-fiatWhite"),
+  [Intent.PRIMARY_SOLID]: classNames("text-fiatWhite"),
   [Intent.SUCCESS]: classNames("text-green-500"),
   [Intent.ERROR]: classNames("text-red-500"),
   [Intent.BLANK]: classNames("text-gray-500"),

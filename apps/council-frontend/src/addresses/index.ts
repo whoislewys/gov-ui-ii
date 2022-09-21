@@ -4,6 +4,48 @@ import {
   goerliAddressList,
 } from "@elementfi/council-tokenlist";
 
+// Element contracts interface
+// export interface AddressesJsonFile {
+//   chainId: number;
+//   addresses: {
+//     elementToken: string;
+//     coreVoting: string;
+//     gscCoreVoting: string;
+//     gscVault: string;
+//     timeLock: string;
+//     lockingVault: string;
+//     vestingVault: string;
+//     optimisticRewardsVault: string;
+//     optimisticGrants: string;
+//     spender: string;
+//     airdrop: string;
+//     treasury: string;
+//   };
+// }
+
+export interface FiatAddressesJsonFile {
+  chainId: number;
+  // pulled from <chainid>.json generated from FIAT deploy script
+  addresses: {
+    timeLock: string;
+    comitiumVault: string;
+    blocklist: string;
+    votingEscrow: string;
+    votingEscrowVault: string;
+    vestingVault: string;
+    // leaving out simpleProxy, should confirm that's desirable
+    coreVoting: string;
+    GSCVault: string;
+    coreVotingGSC: string;
+    fdtEthLpToken: string;
+    fdt: string; // needed for calculating comitium vault voting power
+
+    // spender: string; // don't exist in the genned file, needed?
+    // airdrop: string;
+    // treasury: string;
+  };
+}
+
 // For local hardhat only, this is inlined as an object to preserve type safety
 const testnetAddressList: AddressesJsonFile = {
   chainId: 31337,
@@ -54,24 +96,75 @@ const waffleAddressList: AddressesJsonFile = {
   chainId: 31337,
 };
 
+// TODO: fiat-contracts.ts looks at votingEscrowFactor, but i'm using votingEscrow address
+// should confirm that's what element does
+const fiatGoerliAddressList: FiatAddressesJsonFile = {
+  chainId: 5,
+  addresses: {
+    timeLock: "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c", // TODO: is this used?
+    comitiumVault: "0x715fe964468dEF62dFf79c8578B46Cc24873F8C0",
+    blocklist: "0x4D8aABfa3F34e817B5a733f61d2F0F8C5b74AAF4",
+    votingEscrow: "0xFB3376fe642aE62686403cE88A67F947EdDC237e",
+    votingEscrowVault: "0x02FF2037Ac67a9A4Ef7ABD962bbB57E932bA711B",
+    vestingVault: "0xb5Db4140b69F7BFce71F055549a9269ebb9d55e7",
+    // leaving out simpleProxy, should confirm that's desirable
+    coreVoting: "0x4a96E0DC213F29EfC50E90849a94FAa5f93831b6",
+    GSCVault: "0x2608f2039e58EF06C379F04C86c3DF420074fFDF",
+    coreVotingGSC: "0xa9A12Ef5b04908A03a032F1A61C2eABf20BA93fB",
+    fdtEthLpToken: "0x0acb43977539038584f09f7BD17BF3d73F109141", // TODO: MockERC20 for goerli, in PROD FIAT token (might need Bal LP token too)
+    fdt: "0x83B773c13188dfD4841d2807ddde3FDE274641eE",
+
+    // spender: string; // don't exist in the genned file, needed?
+    // airdrop: string;
+    // treasury: string;
+  },
+};
+
+// TODO: add mainnet addresses
+// const fiatMainnetAddressList: FiatAddressesJsonFile = {
+//   chainId: 5,
+//   // pulled from <chainid>.json generated from FIAT deploy script
+//   addresses: {
+//     timeLock: "",
+//     comitiumVault:  "", // TODO: looks like "ComitiumFacet" will be the first constructor arg for mainnet here, but ComitiumVault should be this address: https://etherscan.io/address/0x6cc9fc46d8436ac5302d1145258344a3cfbae559#code
+//     blocklist:  "",
+//     votingEscrow:  "",
+//     votingEscrowVault:  "",
+//     vestingVault:  "",
+//     // leaving out simpleProxy, should confirm that's desirable
+//     coreVoting:  "",
+//     GSCVault:  "",
+//     coreVotingGSC:  "",
+//     fdtEthLpToken: "", // TODO: MockERC20 for goerli, in PROD FIAT token (might need Bal LP token too)
+//     fdt: '0xEd1480d12bE41d92F36f5f7bDd88212E381A3677', // needed for calculating comitium vault voting power
+
+//     // spender: string; // don't exist in the genned file, needed?
+//     // airdrop: string;
+//     // treasury: string;
+//   },
+// };
+
 // Default to the testnet in this repo so `npm start` Just Works without having
 // to specify it on the command line. This requires a local hardhat node to be running.
 const chainName = process.env.NEXT_PUBLIC_CHAIN_NAME || "testnet";
 
 export const addressesJson = getAddressesList();
 
-function getAddressesList(): AddressesJsonFile {
+function getAddressesList(): AddressesJsonFile | FiatAddressesJsonFile {
   if (process.env.NODE_ENV === "test") {
     return waffleAddressList;
   }
 
   // local hardhat
   if (chainName === "testnet") {
+    console.log("testnet");
     return testnetAddressList;
   }
 
   if (chainName === "goerli") {
-    return goerliAddressList;
+    console.log("goerli");
+    // ...goerliAddressList,
+    return fiatGoerliAddressList as FiatAddressesJsonFile;
   }
 
   if (chainName === "mainnet") {

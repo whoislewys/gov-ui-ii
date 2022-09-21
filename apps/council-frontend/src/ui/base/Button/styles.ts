@@ -31,11 +31,15 @@ export enum ButtonVariant {
   SECONDARY = "secondary",
   DANGER = "danger",
   WHITE = "white",
+  BLACK = "black",
   OUTLINE_WHITE = "outlineWhite",
   OUTLINE_BLUE = "outlineBlue",
+  OUTLINE_LAVENDER = "outlineLavender",
   MINIMAL = "minimal",
   PALE = "paleLily",
   REWARD = "reward",
+  DARK_GRAY = "darkGray",
+  HACKER_SKY = "hackersky",
 }
 
 export function getButtonClass({
@@ -61,8 +65,7 @@ export function getButtonClass({
     "font-bold",
     "focus:outline-none",
     "focus:ring-2",
-    "focus:ring-offset-2",
-    "focus:ring-brandDarkBlue",
+    "focus:ring-fiatLavender",
     { "flex-1": fill, "pointer-events-none": disabled, "opacity-50": disabled },
   );
 
@@ -86,26 +89,29 @@ function getBackground(
   switch (variant) {
     case ButtonVariant.PRIMARY:
       return !error
-        ? classNames("bg-brandDarkBlue", "hover:bg-brandDarkBlue-dark")
+        ? classNames("bg-fiatDarkGray", "hover:bg-fiatDarkGray-dark")
         : classNames("bg-red-500", "hover:bg-red-700");
 
     case ButtonVariant.SECONDARY:
-      return classNames("bg-hackerSky", "hover:bg-hackerSky-dark");
+      return classNames("bg-fiatLightGray", "hover:bg-fiatLightGray-dark");
 
     case ButtonVariant.DANGER:
       return classNames("bg-statusRed", "hover:bg-red-800");
 
     case ButtonVariant.GRADIENT:
       return classNames(
-        "bg-gradient-to-br",
-        "from-principalBlue",
-        "to-yieldBlue",
-        "hover:from-principalBlue",
-        "hover:to-principalBlue",
+        "bg-gradient-to-r",
+        "from-fiatPurple",
+        "to-fiatTangerine",
+        "hover:from-fiatPurple",
+        "hover:to-fiatTangerine",
       );
 
     case ButtonVariant.MINIMAL:
-      return classNames("hover:bg-brandLightBlue hover:bg-opacity-20");
+      return classNames("hover:bg-fiatLightGray-dark");
+
+    case ButtonVariant.BLACK:
+      return classNames("bg-fiatBlack", "hover:bg-fiatBlack-dark");
 
     case ButtonVariant.OUTLINE_WHITE:
       return classNames(
@@ -116,6 +122,12 @@ function getBackground(
 
     case ButtonVariant.OUTLINE_BLUE:
       return classNames("bg-transparent", "hover:bg-blue-100");
+
+    case ButtonVariant.OUTLINE_LAVENDER:
+      return classNames(
+        "bg-transparent",
+        "hover:bg-fiatLightGray-dark",
+      );
 
     case ButtonVariant.WHITE:
       return classNames("bg-white", "hover:bg-opacity-80");
@@ -130,6 +142,10 @@ function getBackground(
         "to-brandLightBlue",
         "hover:from-brandLightBlue",
       );
+    case ButtonVariant.DARK_GRAY:
+      return classNames("bg-fiatDarkGray", "disabled:bg-fiatDarkGray", "disabled:opacity-100");
+    case ButtonVariant.HACKER_SKY:
+      return classNames("bg-hackerSky");
 
     default: {
       assertNever(variant);
@@ -143,21 +159,25 @@ function getTextColor(variant: ButtonVariant): string {
       return classNames("text-deepRed", "hover:text-statusRed");
     case ButtonVariant.PRIMARY:
     case ButtonVariant.OUTLINE_WHITE:
+    case ButtonVariant.OUTLINE_LAVENDER:
     case ButtonVariant.GRADIENT:
     case ButtonVariant.REWARD:
-      return classNames("text-white");
+    case ButtonVariant.BLACK:
+      return classNames("text-fiatWhite");
     case ButtonVariant.SECONDARY:
     case ButtonVariant.MINIMAL:
     case ButtonVariant.OUTLINE_BLUE:
-      return classNames("text-brandDarkBlue-dark");
-
+      return classNames("text-fiatWhite");
     case ButtonVariant.WHITE:
+    case ButtonVariant.DARK_GRAY:
     case ButtonVariant.PALE:
-      return classNames("text-principalRoyalBlue");
+      return classNames("text-fiatWhite", "disabled:text-opacity-50");
+    case ButtonVariant.HACKER_SKY:
+      return classNames("text-fiatDarkGray");
 
     default: {
       assertNever(variant);
-      return classNames("text-white");
+      return classNames("text-fiatWhite");
     }
   }
 }
@@ -169,6 +189,10 @@ function getBorder(variant: ButtonVariant) {
 
   if (variant === ButtonVariant.OUTLINE_BLUE) {
     return "border border-brandDarkBlue-dark";
+  }
+
+  if (variant === ButtonVariant.OUTLINE_LAVENDER) {
+    return "border border-fiatLavender";
   }
 
   return null;

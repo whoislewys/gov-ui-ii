@@ -45,7 +45,7 @@ export default function TextInput({
         className={classNames(
           inputBorderColor,
           ringColor,
-          "block w-full rounded-md text-black shadow-sm sm:text-sm",
+          "bg-fiatDarkGray text-fiatWhite placeholder-fiatLightGray block w-full rounded-md shadow-sm sm:text-sm h-12",
           className,
         )}
         placeholder={placeholder}
@@ -61,16 +61,16 @@ export default function TextInput({
 
 function getInputBorderColor(error: boolean): string {
   const color = error
-    ? "border-red-500 focus:border-red-500"
-    : "focus:border-brandDarkBlue";
+    ? "border-fiatRed focus:border-fiatRed"
+    : "focus:border-fiatLightGray";
 
   return color;
 }
 
 function getInputRingColor(error: boolean): string {
   const color = error
-    ? "focus:ring-red-500 focus:border-red-500"
-    : "focus:ring-brandDarkBlue";
+    ? "focus:ring-fiatRed focus:border-fiatRed"
+    : "focus:ring-fiatLightGray";
 
   return color;
 }

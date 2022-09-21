@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 export const ONE_SECOND_IN_MILLISECONDS = 1000;
+export const MILLISECONDS_PER_SECOND = 1000;
 export const TWO_SECONDS_IN_MILLISECONDS = 2 * ONE_SECOND_IN_MILLISECONDS;
 export const ONE_MINUTE_IN_SECONDS = 60;
 export const ONE_HOUR_IN_SECONDS = 60 * ONE_MINUTE_IN_SECONDS;
@@ -21,3 +22,6 @@ export const THIRTY_DAYS_IN_MILLISECONDS = 30 * ONE_DAY_IN_MILLISECONDS;
 export const MS_PER_S = ONE_SECOND_IN_MILLISECONDS;
 
 export const SECONDS_PER_BLOCK = 13.3;
+
+export const CURRENT_TIME_IN_MILLISECONDS = Date.now()
+export const CURRENT_TIME_IN_SECONDS = Math.round(CURRENT_TIME_IN_MILLISECONDS / 1000)

@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { ReactElement } from "react";
-import ElementIcon, { IconSize } from "src/ui/base/svg/ElementIcon/ElementIcon";
+/* import ElementIcon, { IconSize } from "src/ui/base/svg/ElementIcon/ElementIcon"; */
+import FiatIcon, { IconSize } from "src/ui/base/svg/FiatIcon/FiatIcon";
 
 export { IconSize };
 
@@ -31,10 +32,10 @@ export function ElementIconCircle({
     <Tag
       className={classNames(
         className,
-        "flex w-max flex-shrink-0 items-center justify-center rounded-full bg-white p-0.5 opacity-90 shadow",
+        "flex w-max flex-shrink-0 items-center justify-center rounded-full bg-black p-0.5 shadow",
       )}
     >
-      <ElementIcon height={IconHeight[size]} width={IconWidth[size]} />
+      <FiatIcon height={IconHeight[size]} width={IconWidth[size]} />
     </Tag>
   );
 

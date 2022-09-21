@@ -7,9 +7,8 @@ import {
   ElementIconCircle,
   IconSize,
 } from "src/ui/base/ElementIconCircle/ElementIconCircle";
+import { ConnectWalletButton } from "src/ui/wallet/ConnectWalletButton";
 import { jt, t } from "ttag";
-import Button from "src/ui/base/Button/Button";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 interface StartAirdropCardProps {
   account: string | null | undefined;
@@ -25,17 +24,15 @@ const elementIcon = (
 export function StartAirdropCard({
   onNextStep,
 }: StartAirdropCardProps): ReactElement {
-  const { openConnectModal } = useConnectModal();
   useOnConnected(onNextStep);
-
   return (
     <Card
-      variant={CardVariant.BLUE}
+      variant={CardVariant.DARK_GRAY}
       className="flex h-full min-h-full w-full flex-col text-center text-white"
     >
       <div className="flex justify-end p-2"></div>
       <div className="flex h-full flex-col items-center justify-center space-y-5 p-12">
-        <div className="flex w-full flex-col items-center justify-center space-y-8 lg:w-7/12">
+        <div className="flex w-full flex-col items-center justify-center space-y-8 md:w-7/12">
           <span className="flex items-center text-center text-base font-semibold tracking-wider">{jt`Introducing ${elementIcon} ELFI`}</span>
           <div className="text-3xl font-bold">{t`Contribute to the evolution of the Element DAO`}</div>
           <div className="flex flex-col space-y-8 px-2 text-justify text-base">
@@ -52,9 +49,10 @@ export function StartAirdropCard({
         </div>
 
         <div className="flex w-full justify-center space-x-4 pt-12">
-          <Button variant={ButtonVariant.SECONDARY} onClick={openConnectModal}>
-            {t`Connect Wallet`}
-          </Button>
+          <ConnectWalletButton
+            label={t`Connect wallet`}
+            variant={ButtonVariant.GRADIENT}
+          />
         </div>
       </div>
     </Card>

@@ -14,12 +14,14 @@ export function useLockingVaultVotingPower(
   account: string | undefined | null,
   atBlockNumber?: number,
 ): string {
-  return useQueryVotePower(
-    account,
-    lockingVaultContract,
-    atBlockNumber,
-    "0x00",
-  );
+  // TODO: use vote escrow vote power
+  // return useQueryVotePower(
+  //   account,
+  //   lockingVaultContract,
+  //   atBlockNumber,
+  //   "0x00",
+  // );
+  return "-1"
 }
 
 /**
@@ -31,5 +33,7 @@ export function useLockingVaultVotingPowerView(
   account: string | undefined | null,
   atBlockNumber?: number,
 ): string {
-  return useQueryVotePowerView(account, lockingVaultContract, atBlockNumber);
+  // TODO: use vote escrow vote power
+  // return useQueryVotePowerView(account, lockingVaultContract, atBlockNumber);
+  return "-1"
 }

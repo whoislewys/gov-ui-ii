@@ -12,7 +12,7 @@ export default function GitHubIcon({
       height="109"
       viewBox="0 0 108 109"
       xmlns="http://www.w3.org/2000/svg"
-      className={classNames("fill-hackerSky", className)}
+      className={classNames("fill-fiatLightGray", className)}
       {...props}
     >
       <path d="M60 84C66.7097 83.6795 72.3871 81.0994 77.0323 76.2596C81.6774 71.4199 84 65.6667 84 59C84 65.6667 86.3226 71.4199 90.9677 76.2596C95.6129 81.0994 101.29 83.6795 108 84C101.29 84.3205 95.6129 86.9006 90.9677 91.7404C86.3226 96.5801 84 102.333 84 109C84 102.333 81.6774 96.5801 77.0323 91.7404C72.3871 86.9006 66.7097 84.3205 60 84Z" />

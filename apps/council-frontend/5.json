@@ -1,0 +1,163 @@
+{
+  "LP-ETH-FDT": {
+    "address": "0x0acb43977539038584f09f7BD17BF3d73F109141",
+    "constructorArgs": [
+      "LP-FDT",
+      "FDT-ETH",
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F"
+    ]
+  },
+  "FDT": {
+    "address": "0x83B773c13188dfD4841d2807ddde3FDE274641eE",
+    "constructorArgs": [
+      "FiatDAO",
+      "FDT",
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F"
+    ]
+  },
+  "deployerConsilium": {
+    "address": "0x1Cd2CD25db4bD55dFC15Cc58B9d1B08EeF8F3E3f",
+    "constructorArgs": []
+  },
+  "timelockFactory": {
+    "address": "0x20EBCc6bc6F0bbfa0D28Ab3deb98F0403f3f6cD7",
+    "constructorArgs": []
+  },
+  "coreVotingFactory": {
+    "address": "0x1b9Ae806568Ed76cBdF2607942a872Ba9fcb1868",
+    "constructorArgs": []
+  },
+  "gscVaultFactory": {
+    "address": "0x253338cE363efD7d733b6Bc99b541dF8bF9537A6",
+    "constructorArgs": []
+  },
+  "blocklistFactory": {
+    "address": "0xce3AcF2154ac9D906A59720B91b2238d9C4A5D32",
+    "constructorArgs": []
+  },
+  "votingEscrowFactory": {
+    "address": "0xFB4A6f8FA0b7c589b5AC08eE4090b8A5d93d9a5e",
+    "constructorArgs": []
+  },
+  "votingEscrowVaultFactory": {
+    "address": "0xF8ae2e4a8309e94839f2C4E00e2860b577674A89",
+    "constructorArgs": []
+  },
+  "vestingVaultFactory": {
+    "address": "0x02Def522F5045d51AAB16f67783D937f897c5991",
+    "constructorArgs": []
+  },
+  "simpleProxyFactory": {
+    "address": "0x1D2FFB505Ed79Df83CA5e9b59F062ba659c47fBe",
+    "constructorArgs": []
+  },
+  "consiliumVaultFactory": {
+    "address": "0x6B6E24aA4474244140Dc42BD20829d559Ba4B251",
+    "constructorArgs": []
+  },
+  "timelock": {
+    "address": "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c",
+    "constructorArgs": [
+      {
+        "type": "BigNumber",
+        "hex": "0x093a80"
+      },
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F",
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F"
+    ]
+  },
+  "comitiumVault": {
+    "address": "0x715fe964468dEF62dFf79c8578B46Cc24873F8C0",
+    "constructorArgs": [
+      "0x0000000000000000000000000000000000000000",
+      {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      {
+        "type": "BigNumber",
+        "hex": "0x06f05b59d3b20000"
+      }
+    ]
+  },
+  "blocklist": {
+    "address": "0x4D8aABfa3F34e817B5a733f61d2F0F8C5b74AAF4",
+    "constructorArgs": [
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F"
+    ]
+  },
+  "votingEscrow": {
+    "address": "0xFB3376fe642aE62686403cE88A67F947EdDC237e",
+    "constructorArgs": [
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F",
+      "0x0acb43977539038584f09f7BD17BF3d73F109141"
+    ]
+  },
+  "votingEscrowVault": {
+    "address": "0x02FF2037Ac67a9A4Ef7ABD962bbB57E932bA711B",
+    "constructorArgs": [
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F",
+      "0xFB3376fe642aE62686403cE88A67F947EdDC237e"
+    ]
+  },
+  "vestingVault": {
+    "address": "0xb5Db4140b69F7BFce71F055549a9269ebb9d55e7",
+    "constructorArgs": [
+      "0x0acb43977539038584f09f7BD17BF3d73F109141",
+      "0x2f38f10e1862752Bc061624cDC6A508C3767032F"
+    ]
+  },
+  "simpleProxy": {
+    "address": "0x45deB56d0428B130CecD83BfDC7ab848E605AD6C",
+    "constructorArgs": []
+  },
+  "coreVoting": {
+    "address": "0x4a96E0DC213F29EfC50E90849a94FAa5f93831b6",
+    "constructorArgs": [
+      "0x1Cd2CD25db4bD55dFC15Cc58B9d1B08EeF8F3E3f",
+      {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "0xa9A12Ef5b04908A03a032F1A61C2eABf20BA93fB",
+      [
+        "0x715fe964468dEF62dFf79c8578B46Cc24873F8C0",
+        "0x02FF2037Ac67a9A4Ef7ABD962bbB57E932bA711B",
+        "0x45deB56d0428B130CecD83BfDC7ab848E605AD6C"
+      ]
+    ]
+  },
+  "GSCVault": {
+    "address": "0x2608f2039e58EF06C379F04C86c3DF420074fFDF",
+    "constructorArgs": [
+      "0x4a96E0DC213F29EfC50E90849a94FAa5f93831b6",
+      {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c"
+    ]
+  },
+  "coreVotingGSC": {
+    "address": "0xa9A12Ef5b04908A03a032F1A61C2eABf20BA93fB",
+    "constructorArgs": [
+      "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c",
+      {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "0x0000000000000000000000000000000000000000",
+      [
+        "0x2608f2039e58EF06C379F04C86c3DF420074fFDF"
+      ]
+    ]
+  }
+}

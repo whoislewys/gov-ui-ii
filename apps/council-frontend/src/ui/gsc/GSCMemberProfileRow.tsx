@@ -4,13 +4,13 @@ import classNames from "classnames";
 
 import { formatWalletAddress } from "src/base/formatWalletAddress";
 import { getGSCCandidateUrl } from "src/integrations/commonwealth";
+import { Delegate } from "src/elf-council-delegates/delegates";
 import { useVotingPowerForAccountAtLatestBlock } from "src/ui/voting/useVotingPowerForAccount";
 import { WalletJazzicon } from "src/ui/wallet/WalletJazzicon";
 import { useENSName } from "src/ui/ethereum/useEnsName";
 import { useGSCVotePowerThreshold } from "./useGSCVotePowerThreshold";
 import { formatEther } from "ethers/lib/utils";
 import { NumDelegatedVotes } from "src/ui/gsc/NumDelegatedVotes";
-import { Delegate } from "@elementfi/council-delegates";
 
 interface GSCMemberProfileRowProps {
   selected: boolean;
@@ -47,24 +47,24 @@ export function GSCMemberProfileRow(
     formatWalletAddress(delegate.address);
 
   const delegateNameElement = (
-    <span className="truncate">{formattedDelegateName}</span>
+    <span className="truncate text-fiatWhite">{formattedDelegateName}</span>
   );
   return (
     <div
       className={classNames(
-        "grid grid-cols-10 items-center justify-between rounded-xl bg-white py-3 sm:px-4",
+        "bg-fiatLightGray grid grid-cols-10 items-center justify-between rounded-xl py-3 sm:px-4",
         {
-          "!bg-votingGreen": highlightSelected && selected,
+          "!bg-fiatGreen": highlightSelected && selected,
         },
       )}
     >
       {/* Name */}
       <div className="col-span-6 mr-4 items-start truncate lg:col-span-4">
-        <div className="flex items-center font-bold text-principalRoyalBlue">
+        <div className="text-fiatWhite flex items-center font-bold">
           <WalletJazzicon
             account={delegate.address}
             size={20}
-            className="mr-2 h-5 w-5 rounded-xl bg-principalRoyalBlue"
+            className="bg-principalRoyalBlue mr-2 h-5 w-5 rounded-xl"
           />
           {delegate.commonwealthPostedFromAddress ? (
             <a

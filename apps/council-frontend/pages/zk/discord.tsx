@@ -9,7 +9,7 @@ export default function ZK(): ReactElement {
   return (
     <Fragment>
       <Head>
-        <title>{t`ZK Discord Airdrop | Element Council Protocol`}</title>
+        <title>{t`ZK Discord Airdrop | Fiat Council Protocol`}</title>
       </Head>
       <PageView
         showSidebar={false}

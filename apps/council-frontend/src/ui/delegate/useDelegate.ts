@@ -1,20 +1,21 @@
 import { useSmartContractReadCall } from "@elementfi/react-query-typechain/src/hooks/useSmartContractReadCall/useSmartContractReadCall";
-import { ethers } from "ethers";
-import { lockingVaultContract } from "src/contracts";
+import { votingEscrowContract } from "src/fiat-contracts";
 
 export function useDelegate(
   address: string | undefined | null,
 ): string | undefined {
-  const { data: depositInfo } = useSmartContractReadCall(
-    lockingVaultContract,
-    "deposits",
-    {
-      callArgs: [address as string],
-      enabled: !!address,
-    },
-  );
+  // Recall that public solidity variables have implicit getters generated upon compilation
+  // (Ab)using that here to query the LockedBalance struct for a user. The 4th element of this struct is the delegatee address
+  // See VotingEscrow.sol in consilium repo for more
+  const { data } = useSmartContractReadCall(votingEscrowContract, "locked", {
+    callArgs: [address as string],
+    enabled: !!address,
+  });
 
-  const [delegate] = depositInfo || [];
+  if (data && data[3]) {
+    const delegatee = data[3];
+    return delegatee;
+  }
 
-  return delegate === ethers.constants.AddressZero ? undefined : delegate;
+  return "";
 }

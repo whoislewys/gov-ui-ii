@@ -1,16 +1,20 @@
 import { useQuery } from "react-query";
 
-import {
-  LockingVault,
-  OptimisticRewards,
-  VestingVault,
-} from "@elementfi/council-typechain";
 import { useSmartContractReadCall } from "@elementfi/react-query-typechain/src/hooks/useSmartContractReadCall/useSmartContractReadCall";
 import { formatEther } from "@ethersproject/units";
-import { BytesLike, ethers } from "ethers";
+import { BigNumber, BigNumberish, BytesLike, ethers } from "ethers";
 import { Logger } from "ethers/lib/utils";
 
 import { useLatestBlockNumber } from "src/ui/ethereum/useLatestBlockNumber";
+import {
+  CURRENT_TIME_IN_MILLISECONDS,
+  CURRENT_TIME_IN_SECONDS,
+} from "src/base/time";
+import {
+  OptimisticRewards,
+  VestingVault,
+  VotingEscrowVault,
+} from "src/consilium-typechain";
 
 /**
  * Use this to get the current vote power.
@@ -20,12 +24,14 @@ import { useLatestBlockNumber } from "src/ui/ethereum/useLatestBlockNumber";
  */
 export function useQueryVotePower(
   account: string | undefined | null,
-  vaultContract: LockingVault | VestingVault | OptimisticRewards,
+  vaultContract: VotingEscrowVault | VestingVault | OptimisticRewards,
   atBlockNumber?: number,
+  atTimestamp?: number,
   extraData?: BytesLike,
 ): string {
   const { data: latestBlockNumber } = useLatestBlockNumber();
   const blockNumber = atBlockNumber || latestBlockNumber;
+  const timestamp = atTimestamp || CURRENT_TIME_IN_SECONDS;
 
   // TODO: use useSmartContractReadCall when onError is overridable and when we can disable ethers
   // logging
@@ -41,8 +47,10 @@ export function useQueryVotePower(
         const votePower = await vaultContract.callStatic.queryVotePower(
           account as string,
           blockNumber as number,
+          timestamp as number,
           extraData as BytesLike,
         );
+        // TODO: fucj ui dekegated, but delegated elfi. need to delegate fiat voting power to myself
         ethers.utils.Logger.setLogLevel(Logger.levels.WARNING);
         return votePower;
       } catch (error) {
@@ -68,14 +76,13 @@ export function useQueryVotePower(
  */
 export function useQueryVotePowerView(
   account: string | undefined | null,
-  vaultContract: LockingVault | VestingVault,
+  vaultContract: VotingEscrowVault | VestingVault,
   atBlockNumber?: number,
 ): string {
   const { data: latestBlockNumber } = useLatestBlockNumber();
   const blockNumber = atBlockNumber || latestBlockNumber;
 
-  // TODO: use useSmartContractReadCall when onError is overridable and when we can disable ethers
-  // logging
+  // TODO: use useSmartContractReadCall when onError is overridable and when we can disable ethers logging
   const { data: votePower } = useQuery({
     queryFn: async () => {
       try {
@@ -116,7 +123,7 @@ export function useQueryVotePowerView(
  */
 export function useQueryVotePowerViewOld(
   account: string | undefined | null,
-  vaultContract: LockingVault | VestingVault,
+  vaultContract: VotingEscrowVault | VestingVault,
   atBlockNumber?: number,
 ): string {
   const { data: latestBlockNumber } = useLatestBlockNumber();

@@ -1,43 +1,47 @@
 import React, { ReactElement } from "react";
-import { ProposalsJson } from "@elementfi/council-proposals";
+
+import Head from "next/head";
+import { Web3Provider } from "@ethersproject/providers";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useWeb3React } from "@web3-react/core";
 import classNames from "classnames";
-import { Signer } from "ethers";
-import Head from "next/head";
 import { jt, t } from "ttag";
-import { useAccount, useSigner } from "wagmi";
 
+import { ProposalsJson } from "@elementfi/council-proposals";
 import ElementUrls from "src/urls";
-import Card from "src/ui/base/Card/Card";
+import Card, { CardVariant } from "src/ui/base/Card/Card";
 import H1 from "src/ui/base/H1/H1";
 import ExternalLink from "src/ui/base/ExternalLink/ExternalLink";
 import { PortfolioCard } from "src/ui/overview/PortfolioCard";
 import { SummaryCards } from "src/ui/overview/SummaryCards";
 import { defaultProvider } from "src/providers/providers";
+import { useSigner } from "src/ui/signer/useSigner";
 
 const provider = defaultProvider;
 
-export function OverviewPage(): ReactElement {
-  const { address } = useAccount();
-  const { data: signer } = useSigner();
+interface OverviewPageProps {
+  proposalsJson: ProposalsJson;
+}
+
+export function OverviewPage({
+  proposalsJson,
+}: OverviewPageProps): ReactElement {
+  const { account, library } = useWeb3React<Web3Provider>();
+  const signer = useSigner(account, library);
 
   return (
     <div className="h-full w-full space-y-6 xl:max-w-[1024px]">
       <Head>
-        <title>{t`Overview | Element Council Protocol`}</title>
+        <title>{t`Overview | Fiat Council Protocol`}</title>
       </Head>
 
-      <div className="px-8 py-1">
-        <H1 className="text-center text-principalRoyalBlue">
-          {t`Governance Overview`}
-        </H1>
-      </div>
-      <SummaryCards />
+      <div className="px-8 py-4" />
+      <SummaryCards proposalsJson={proposalsJson} />
       <div className="flex w-full grid-cols-2 flex-col justify-center space-y-6 xl:flex-row xl:space-x-6 xl:space-y-0">
         <div className="w-full">
           <PortfolioCard
-            account={address}
+            account={account}
             signer={signer}
             provider={provider}
           />
@@ -62,16 +66,18 @@ const faqDocsLink = (
 
 function FAQ() {
   return (
-    <Card className="w-full shadow-md xl:max-w-[512px]">
-      <span className="text-xl font-bold tracking-widest text-principalRoyalBlue">{t`FAQ`}</span>
+    <Card
+      variant={CardVariant.BLACK}
+      className="w-full shadow-md xl:max-w-[512px]"
+    >
+      <span className="text-fiatWhite text-xl font-bold tracking-widest">{t`FAQ`}</span>
       <div className="w-full pt-4">
-        <div className="w-full rounded-2xl bg-white">
+        <div className="bg-fiatBlack w-full rounded-2xl">
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-hackerSky p-4 text-left text-sm font-medium text-principalRoyalBlue hover:bg-hackerSky-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
-                  <span>{t`What is Element Council?`}</span>
-
+                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                  <span>{t`What is Consilium?`}</span>
                   <ChevronDownIcon
                     className={classNames(
                       open ? classNames("rotate-180 transform") : "",
@@ -91,7 +97,7 @@ function FAQ() {
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-hackerSky p-4 text-left text-sm font-medium text-principalRoyalBlue hover:bg-hackerSky-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
+                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>{t`What is a voting vault?`}</span>
                   <ChevronDownIcon
                     className={classNames(
@@ -119,7 +125,7 @@ function FAQ() {
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-hackerSky p-4 text-left text-sm font-medium text-principalRoyalBlue hover:bg-hackerSky-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
+                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>{t`How does delegated voting work?`}</span>
                   <ChevronDownIcon
                     className={classNames(
@@ -139,7 +145,7 @@ function FAQ() {
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-hackerSky p-4 text-left text-sm font-medium text-principalRoyalBlue hover:bg-hackerSky-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
+                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>{t`Who are the GSC (Governance Steering Council)?`}</span>
                   <ChevronDownIcon
                     className={classNames(

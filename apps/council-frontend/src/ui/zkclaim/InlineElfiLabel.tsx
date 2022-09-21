@@ -7,7 +7,7 @@ import { t } from "ttag";
 export const InlineElfiLabel = (
   <span className="whitespace-nowrap" key="elfi-label-in-body-text">
     <ElementIconCircle
-      className="mb-0.5 -mt-0.5 w-6 bg-paleLily"
+      className="bg-paleLily mb-0.5 -mt-0.5 w-6"
       inline
       size={IconSize.SMALL}
     />

@@ -1,14 +1,14 @@
 import React, { ReactElement, useState } from "react";
 import Head from "next/head";
-import { useAccount, useSigner } from "wagmi";
-import { Signer } from "ethers";
-import { parseEther } from "ethers/lib/utils";
-import { t } from "ttag";
+import { useWeb3React } from "@web3-react/core";
 
 import { ChooseDelegate } from "src/ui/airdrop/ChooseDelegate/ChooseDelegate";
 import { StartAirdropCard } from "src/ui/airdrop/StartAirdropCard/StartAirdropCard";
 import { AirdropPreview } from "src/ui/airdrop/AirdropPreview/AirdropPreview";
 import Steps from "src/ui/base/Steps/Steps";
+import { useSigner } from "src/ui/signer/useSigner";
+import { t } from "ttag";
+import { parseEther } from "ethers/lib/utils";
 import { MerkleRewardType, useMerkleInfo } from "src/ui/merkle/useMerkleInfo";
 import { useUnclaimedAirdrop } from "src/ui/airdrop/useUnclaimedAirdrop";
 import { MerkleProof } from "src/merkle/MerkleProof";
@@ -22,7 +22,6 @@ import { ReviewTransaction } from "src/ui/airdrop/ReviewClaim/ReviewTransaction"
 import { AirdropAlreadyClaimed } from "src/ui/airdrop/AirdropAlreadyClaimed/AirdropAlreadyClaimed";
 import { ClaimSuccessful } from "src/ui/airdrop/ClaimSuccessful/ClaimSuccessful";
 import useRouterSteps, { StepStatus } from "src/ui/router/useRouterSteps";
-import { defaultProvider } from "src/providers/providers";
 
 enum Step {
   /**
@@ -64,18 +63,16 @@ enum Step {
   ALREADY_CLAIMED = "claimed",
 }
 
-const provider = defaultProvider;
-
 export default function AirdropPage(): ReactElement {
-  const { address, isConnected } = useAccount();
-  const { data: signer } = useSigner();
+  const { account, active, library } = useWeb3React();
+  const signer = useSigner(account, library);
   const merkleInfoQueryData = useMerkleInfo(
-    address?.toLowerCase(),
+    account?.toLowerCase(),
     MerkleRewardType.RETRO,
   );
 
   const { data: merkleInfo } = merkleInfoQueryData;
-  const claimableBalance = useUnclaimedAirdrop(address, merkleInfo);
+  const claimableBalance = useUnclaimedAirdrop(account, merkleInfo);
 
   const [delegateAddress, setDelegateAddress] = useState<string | undefined>();
 
@@ -113,7 +110,7 @@ export default function AirdropPage(): ReactElement {
   return (
     <div className="flex w-full max-w-4xl flex-1 flex-col items-center gap-4">
       <Head>
-        <title>{t`Element Airdrop | Element Council Protocol`}</title>
+        <title>{t`Element Airdrop | Fiat Council Protocol`}</title>
       </Head>
 
       <div className="w-[600px] max-w-full">
@@ -159,9 +156,9 @@ export default function AirdropPage(): ReactElement {
             default:
               return (
                 <StartAirdropCard
-                  account={address}
-                  library={provider}
-                  walletConnectionActive={isConnected}
+                  account={account}
+                  library={library}
+                  walletConnectionActive={active}
                   onNextStep={() => {
                     if (hasClaimedAirdrop(merkleInfo, claimableBalance)) {
                       goToStep(Step.ALREADY_CLAIMED);
@@ -174,18 +171,18 @@ export default function AirdropPage(): ReactElement {
 
             case Step.ALREADY_CLAIMED:
               return (
-                <AirdropAlreadyClaimed account={address} provider={provider} />
+                <AirdropAlreadyClaimed account={account} provider={library} />
               );
 
             case Step.AIRDROP_PREVIEW:
               return (
-                <AirdropPreview account={address} onNextStep={goToNextStep} />
+                <AirdropPreview account={account} onNextStep={goToNextStep} />
               );
 
             case Step.DELEGATE_INSTRUCTIONS:
               return (
                 <DelegateInstructions
-                  account={address}
+                  account={account}
                   onPrevStep={goToPreviousStep}
                   onNextStep={goToNextStep}
                 />
@@ -193,8 +190,8 @@ export default function AirdropPage(): ReactElement {
             case Step.CHOOSE_DELEGATE:
               return (
                 <ChooseDelegate
-                  account={address as string}
-                  provider={provider}
+                  account={account as string}
+                  provider={library}
                   onChooseDelegate={setDelegateAddress}
                   onPrevStep={goToPreviousStep}
                   onNextStep={goToNextStep}
@@ -203,8 +200,8 @@ export default function AirdropPage(): ReactElement {
             case Step.REVIEW_TRANSACTION:
               return (
                 <ReviewTransaction
-                  account={address}
-                  provider={provider}
+                  account={account}
+                  provider={library}
                   signer={signer}
                   delegateAddress={
                     delegateAddress as string /* safe to cast because users cannot get to this step w/out choosing a delegate first */

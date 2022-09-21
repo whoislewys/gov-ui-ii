@@ -21,7 +21,6 @@ import ElementUrl from "src/urls";
 import { BalanceWithLabel } from "src/ui/base/BalanceWithLabel/BalanceWithLabel";
 import Button from "src/ui/base/Button/Button";
 import { ButtonVariant } from "src/ui/base/Button/styles";
-import GradientCard from "src/ui/base/Card/GradientCard";
 import CloseButton from "src/ui/base/Dialog/CloseButton";
 import ExternalLink from "src/ui/base/ExternalLink/ExternalLink";
 import H1 from "src/ui/base/H1/H1";
@@ -39,7 +38,6 @@ import { ProposalStatusIcon } from "src/ui/proposals/ProposalList/ProposalStatus
 import { BallotLabel } from "src/ui/proposals/ProposalsDetailsCard/BallotLabel";
 import { StaleVotingPowerMessage } from "src/ui/proposals/ProposalsDetailsCard/StaleVotingPowerMessage";
 import { TooltipDefinition } from "src/ui/proposals/ProposalsDetailsCard/tooltipDefinitions";
-import { UnverifiedProposalWarning } from "src/ui/proposals/ProposalsDetailsCard/UnverifiedProposalWarning";
 import { useProposalExecuted } from "src/ui/proposals/useProposalExecuted";
 import { useSnapshotProposals } from "src/ui/proposals/useSnapshotProposals";
 import { useVotingPowerForProposal } from "src/ui/proposals/useVotingPowerForProposal";
@@ -51,11 +49,12 @@ import { useVotingPowerForAccountAtBlockNumber } from "src/ui/voting/useVotingPo
 import { VotingBallotButton } from "src/ui/voting/VotingBallotButton";
 import { jt, t } from "ttag";
 import { ReactMarkdownOptions } from "react-markdown/lib/react-markdown";
+import Card, { CardVariant } from "src/ui/base/Card/Card";
 
 interface ProposalDetailsCardProps {
   className?: string;
   account: string | null | undefined;
-  signer: Signer | null | undefined;
+  signer: Signer | undefined;
   proposal: Proposal;
   onClose: () => void;
   unverified?: boolean;
@@ -149,7 +148,7 @@ export function ProposalDetailsCard(
         <ExternalLink
           href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${pendingTransaction.hash}`}
           text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
+          className="text-fiatWhite"
         />
       );
 
@@ -177,7 +176,8 @@ export function ProposalDetailsCard(
   }, [newBallot, proposalId, vote]);
 
   return (
-    <GradientCard
+    <Card
+      variant={CardVariant.BLACK}
       style={
         // don't scroll app behind popover, makes a double scroll bar
         { overscrollBehavior: "none" }
@@ -207,7 +207,7 @@ export function ProposalDetailsCard(
               </H2>
               <Tag className="w-min py-2 lg:hidden">
                 {proposalStatus && (
-                  <div className="flex w-full items-center justify-end space-x-2 text-black">
+                  <div className="flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-nowrap">
                       {ProposalStatusLabels[proposalStatus]}
                     </div>
@@ -227,7 +227,7 @@ export function ProposalDetailsCard(
 
           <Tag className="top-0 right-0 hidden h-min py-2 lg:absolute lg:-mt-8 lg:block">
             {proposalStatus && (
-              <div className="flex w-full items-center justify-end space-x-2 text-black">
+              <div className="text-fiatWhite flex w-full items-center justify-end space-x-2">
                 <div className="whitespace-nowrap">
                   {ProposalStatusLabels[proposalStatus]}
                 </div>
@@ -247,15 +247,11 @@ export function ProposalDetailsCard(
         </p>
         <div className="h-1/3 overflow-hidden rounded-lg bg-black bg-opacity-20">
           <div className="h-full overflow-auto break-words">
-            {unverified ? (
-              <UnverifiedProposalWarning />
-            ) : (
-              <p className="shrink-0 whitespace-pre-line py-2 px-4 font-light text-white">
-                <ReactMarkdown components={markdownComponents}>
-                  {proposal.description || ""}
-                </ReactMarkdown>
-              </p>
-            )}
+            <p className="shrink-0 whitespace-pre-line py-2 px-4 font-light text-white">
+              <ReactMarkdown components={markdownComponents}>
+                {proposal.description || ""}
+              </ReactMarkdown>
+            </p>
           </div>
         </div>
 
@@ -327,7 +323,7 @@ export function ProposalDetailsCard(
                 proposal={proposal}
                 currentBallot={newBallot}
                 onSelectBallot={setCurrentBallot}
-                variant={ButtonVariant.WHITE}
+                variant={ButtonVariant.DARK_GRAY}
                 disabled={voteButtonDisabled}
               />
               {ballotVotePower?.gt(0) && isNumber(ballotChoice) && (
@@ -340,7 +336,7 @@ export function ProposalDetailsCard(
                 disabled={submitButtonDisabled}
                 onClick={handleVote}
                 loading={isVoteTxPending}
-                variant={ButtonVariant.PRIMARY}
+                variant={ButtonVariant.GRADIENT}
                 className="w-[95px] shrink-0 justify-center"
               >
                 {ballotChoice === undefined ? t`Submit` : t`Modify vote`}
@@ -349,7 +345,7 @@ export function ProposalDetailsCard(
           </div>
         </div>
       </div>
-    </GradientCard>
+    </Card>
   );
 }
 

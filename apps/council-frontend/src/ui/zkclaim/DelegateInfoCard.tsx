@@ -17,7 +17,7 @@ export default function DelegateInfoCard({
   onNextStep,
 }: DelegateInfoCardProps): ReactElement {
   return (
-    <Card className={className} variant={CardVariant.BLUE}>
+    <Card className={className} variant={CardVariant.DARK_GRAY}>
       <div className="p-2 text-white sm:px-6 sm:py-4">
         <div className="flex flex-col justify-center text-white sm:items-center sm:px-20 md:my-12">
           <h1 className="mb-5 text-3xl font-semibold">{t`What is Delegation?`}</h1>

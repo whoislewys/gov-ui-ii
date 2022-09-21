@@ -20,7 +20,7 @@ import { defaultProvider } from "src/providers/providers";
 import ElementUrl from "src/urls";
 import Button from "src/ui/base/Button/Button";
 import { ButtonVariant } from "src/ui/base/Button/styles";
-import GradientCard from "src/ui/base/Card/GradientCard";
+import Card, { CardVariant } from "src/ui/base/Card/Card";
 import CloseButton from "src/ui/base/Dialog/CloseButton";
 import ExternalLink from "src/ui/base/ExternalLink/ExternalLink";
 import H1 from "src/ui/base/H1/H1";
@@ -52,7 +52,7 @@ import { BallotLabel } from "src/ui/proposals/ProposalsDetailsCard/BallotLabel";
 interface GSCProposalDetailsCardProps {
   className?: string;
   account: string | null | undefined;
-  signer: Signer | null | undefined;
+  signer: Signer | undefined;
   proposal: Proposal;
   onClose: () => void;
   unverified?: boolean;
@@ -128,7 +128,7 @@ export function GSCProposalDetailsCard(
         <ExternalLink
           href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${pendingTransaction.hash}`}
           text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
+          className="text-fiatWhite"
         />
       );
 
@@ -156,7 +156,8 @@ export function GSCProposalDetailsCard(
   }, [newBallot, proposalId, vote]);
 
   return (
-    <GradientCard
+    <Card
+    variant={CardVariant.BLACK}
       style={
         // don't scroll app behind popover, makes a double scroll bar
         { overscrollBehavior: "none" }
@@ -186,10 +187,8 @@ export function GSCProposalDetailsCard(
               </H2>
               <Tag className="w-min py-2 lg:hidden">
                 {proposalStatus && (
-                  <div className="flex w-full items-center justify-end space-x-2 text-black">
-                    <div className="whitespace-nowrap">
-                      {ProposalStatusLabels[proposalStatus]}
-                    </div>
+                  <div className="flex w-full items-center justify-end space-x-2">
+                    {ProposalStatusLabels[proposalStatus]}
                     <ProposalStatusIcon
                       signer={signer}
                       proposal={proposal}
@@ -297,7 +296,7 @@ export function GSCProposalDetailsCard(
                 proposal={proposal}
                 currentBallot={newBallot}
                 onSelectBallot={setCurrentBallot}
-                variant={ButtonVariant.WHITE}
+                variant={ButtonVariant.DARK_GRAY}
                 disabled={!isVotingOpen || isMemberIdle}
               />
               {ballotVotePower?.gt(0) && isNumber(ballotChoice) && (
@@ -319,7 +318,7 @@ export function GSCProposalDetailsCard(
           </div>
         </div>
       </div>
-    </GradientCard>
+    </Card>
   );
 }
 

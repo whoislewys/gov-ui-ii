@@ -23,7 +23,7 @@ const elfiLogoElement = (
 export function ClaimSuccessful(): ReactElement {
   return (
     <Card
-      variant={CardVariant.BLUE}
+      variant={CardVariant.DARK_GRAY}
       className="flex h-full flex-col text-center text-white"
     >
       <div className="flex flex-col items-center justify-center p-6">

@@ -84,7 +84,7 @@ export default function EncryptionCard({
   };
 
   return (
-    <Card variant={CardVariant.BLUE} className={className}>
+    <Card variant={CardVariant.DARK_GRAY} className={className}>
       <div className="flex flex-col gap-2 p-2 text-white sm:px-6 sm:py-4">
         <h1 className="mb-2 text-3xl font-semibold">{t`Encryption`}</h1>
         <div className="mb-4 flex flex-col gap-2 rounded-lg bg-white/10 px-5 py-4 sm:py-6 sm:px-8">

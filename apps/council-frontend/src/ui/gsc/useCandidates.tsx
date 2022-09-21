@@ -1,4 +1,4 @@
-import { delegates } from "src/delegates/delegates";
+import { Delegate, delegates } from "src/elf-council-delegates/delegates";
 import { formatEther } from "ethers/lib/utils";
 import { useGSCMembers } from "src/ui/gsc/useGSCMembers";
 import { useMemo } from "react";
@@ -8,7 +8,6 @@ import {
 } from "src/ui/gsc/useVotingPowerByDelegates";
 import { useGSCVotePowerThreshold } from "./useGSCVotePowerThreshold";
 import { BigNumber } from "ethers";
-import { Delegate } from "@elementfi/council-delegates";
 
 /**
  * Returns a list of candidates, sorted by highest to lowest voting power
@@ -25,7 +24,7 @@ export function useGSCCandidates(): Delegate[] {
     () =>
       threshold
         ? sortVotingPower(votePowerByDelegates, gscMemberAddresses, threshold)
-        : ([] as Delegate[]),
+        : [],
     // Using the length here is a better hook dependency
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [gscMemberAddresses.length, votePowerByDelegates],
@@ -54,7 +53,7 @@ function sortVotingPower(
         (delegate) => address === delegate.address,
       );
 
-      return knownDelegate ?? { address, createdAt: "" };
+      return knownDelegate ?? { address };
     })
     .slice(0, 20);
 }

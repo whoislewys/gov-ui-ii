@@ -7,7 +7,7 @@ import { jt, t } from "ttag";
 import { ButtonVariant } from "src/ui/base/Button/styles";
 import Button from "src/ui/base/Button/Button";
 import Dialog from "src/ui/base/Dialog/Dialog";
-import { useJoinGSC } from "./useJoinGSC";
+// import { useJoinGSC } from "./useJoinGSC";
 import { useKick } from "./useKickGSC";
 import toast from "react-hot-toast";
 import ExternalLink from "src/ui/base/ExternalLink/ExternalLink";
@@ -18,7 +18,7 @@ import { useQueryClient } from "react-query";
 
 interface GSCButtonProps {
   account: string | null | undefined;
-  signer: Signer | null | undefined;
+  signer: Signer | undefined;
   disabled?: boolean;
   isGSC?: boolean;
 }
@@ -31,33 +31,33 @@ export function JoinGSCButton({
 }: GSCButtonProps): ReactElement {
   const toastIdRef = useRef<string>();
   const queryClient = useQueryClient();
-  const { handleJoin, isLoading } = useJoinGSC(account, signer, {
-    onError: (e) => {
-      toast.error(e.message, { id: toastIdRef.current });
-    },
-    onTransactionSubmitted: (tx) => {
-      const etherscanLink = (
-        <ExternalLink
-          href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
-          text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
-        />
-      );
+  // const { handleJoin, isLoading } = useJoinGSC(account, signer, {
+  //   onError: (e) => {
+  //     toast.error(e.message, { id: toastIdRef.current });
+  //   },
+  //   onTransactionSubmitted: (tx) => {
+  //     const etherscanLink = (
+  //       <ExternalLink
+  //         href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
+  //         text={t`View on etherscan`}
+  //         className="text-fiatWhite"
+  //       />
+  //     );
 
-      const message = (
-        <div>{jt`Confirming transaction... ${etherscanLink}`}</div>
-      );
+  //     const message = (
+  //       <div>{jt`Confirming transaction... ${etherscanLink}`}</div>
+  //     );
 
-      toastIdRef.current = toast.loading(message);
-    },
-    onTransactionMined: () => {
-      toast.success(t`Transaction successfully confirmed`, {
-        id: toastIdRef.current,
-      });
-      setDialogOpen(false);
-      queryClient.invalidateQueries();
-    },
-  });
+  //     toastIdRef.current = toast.loading(message);
+  //   },
+  //   onTransactionMined: () => {
+  //     toast.success(t`Transaction successfully confirmed`, {
+  //       id: toastIdRef.current,
+  //     });
+  //     setDialogOpen(false);
+  //     queryClient.invalidateQueries();
+  //   },
+  // });
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -66,7 +66,7 @@ export function JoinGSCButton({
       <Button
         variant={ButtonVariant.PRIMARY}
         disabled={disabled}
-        loading={isLoading}
+        // loading={isLoading}
         onClick={() => setDialogOpen(true)}
       >
         {isGSC ? t`Joined` : t`Join`}
@@ -74,10 +74,10 @@ export function JoinGSCButton({
 
       <Dialog isOpen={dialogOpen} onClose={() => setDialogOpen(false)}>
         <div>
-          <div className="mb-4 text-lg font-bold text-principalRoyalBlue">
+          <div className="text-fiatWhite mb-4 text-lg font-bold">
             {t`Join Confirmation`}
           </div>
-          <div className="mb-8 text-sm text-principalRoyalBlue">
+          <div className="text-fiatWhite mb-8 text-sm">
             {t`Are you sure you want to join the the GSC? This means that you will
             be responsible for the rights and responsibilities of a GSC member
             and held accountable by Element DAO from this moment forward.`}
@@ -92,7 +92,7 @@ export function JoinGSCButton({
               variant={ButtonVariant.GRADIENT}
               onClick={() => {
                 setDialogOpen(false);
-                handleJoin();
+                // handleJoin();
               }}
             >{t`Join`}</Button>
           </div>
@@ -118,7 +118,7 @@ export function LeaveGSCButton({
         <ExternalLink
           href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
           text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
+          className="text-fiatWhite"
         />
       );
 
@@ -158,10 +158,10 @@ export function LeaveGSCButton({
 
       <Dialog isOpen={dialogOpen} onClose={() => setDialogOpen(false)}>
         <div>
-          <div className="mb-4 text-lg font-bold text-principalRoyalBlue">
+          <div className="text-fiatWhite mb-4 text-lg font-bold">
             {t`Leave Confirmation`}
           </div>
-          <div className="mb-8 text-sm text-principalRoyalBlue">
+          <div className="text-fiatWhite mb-8 text-sm">
             {t`Are you sure you want to leave the GSC? By leaving the GSC, you
             will forfeit the benefits, roles, and responsibilities of GSC
             membership, as outlined in the GSC Membership forum post. You will

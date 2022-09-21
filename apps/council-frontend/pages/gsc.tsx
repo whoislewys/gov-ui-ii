@@ -21,10 +21,7 @@ export default function GSCProposals({
     return null;
   }
   return (
-    <PageView childrenContainerClassName="flex justify-center max-w-7xl flex-col space-y-20 items-center">
-      <Head>
-        <title>{t`GSC | Element Council Protocol`}</title>
-      </Head>
+    <PageView pageTitle="GSC" childrenContainerClassName="flex justify-center max-w-7xl flex-col space-y-20 items-center">
       <GSCOverviewPage />
       <GSCProposalsPage
         proposalsJson={proposalsJson}

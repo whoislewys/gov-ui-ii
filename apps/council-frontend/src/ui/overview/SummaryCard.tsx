@@ -1,7 +1,7 @@
 import { InformationCircleIcon } from "@heroicons/react/outline";
 import React, { ReactElement, ReactNode } from "react";
 
-import Card from "src/ui/base/Card/Card";
+import Card, {CardVariant} from "src/ui/base/Card/Card";
 import Tooltip from "src/ui/base/Tooltip/Tooltip";
 
 interface SummaryCardProps {
@@ -14,8 +14,8 @@ export function SummaryCard(props: SummaryCardProps): ReactElement {
   const { title, balance, children, tooltipContent } = props;
 
   return (
-    <Card className="flex flex-col lg:flex-1">
-      <div className="flex items-center justify-center text-principalRoyalBlue">
+    <Card className="flex flex-col lg:flex-1" variant={CardVariant.BLACK}>
+      <div className="text-fiatWhite flex items-center justify-center">
         {title}
         {tooltipContent ? (
           <Tooltip content={tooltipContent}>
@@ -23,7 +23,7 @@ export function SummaryCard(props: SummaryCardProps): ReactElement {
           </Tooltip>
         ) : null}
       </div>
-      <div className="flex flex-1 items-center justify-center py-4 text-center text-5xl font-extralight text-principalRoyalBlue">
+      <div className="text-fiatWhite flex flex-1 items-center justify-center py-4 text-center text-5xl font-extralight">
         {balance}
       </div>
       {children}

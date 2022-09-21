@@ -8,7 +8,7 @@ export const ELEMENT_FINANCE_GSC_SNAPSHOT_URL = getGSCSnapshotUrl();
 function getSnapshotUrl() {
   switch (addressesJson.chainId) {
     case ChainId.MAINNET:
-      return "https://snapshot.org/#/elfi.eth";
+      return "https://snapshot.org/#/fiatdao.eth";
     case ChainId.GOERLI:
     case ChainId.LOCAL:
     default:
@@ -19,7 +19,7 @@ function getSnapshotUrl() {
 function getGSCSnapshotUrl() {
   switch (addressesJson.chainId) {
     case ChainId.MAINNET:
-      return "https://snapshot.org/#/gsc-elfi.eth";
+      return "https://snapshot.org/#/gsc-fiatdao.eth"; // TODO: register new snapshot url for gsc members to vote on snapshot?
     case ChainId.GOERLI:
     case ChainId.LOCAL:
     default:

@@ -4,12 +4,12 @@ import { t } from "ttag";
 import Button from "src/ui/base/Button/Button";
 import Dialog from "src/ui/base/Dialog/Dialog";
 import { ButtonVariant } from "src/ui/base/Button/styles";
+import { Delegate } from "src/elf-council-delegates/delegates";
 import { NumDelegatedVotes } from "src/ui/gsc/NumDelegatedVotes";
 import { WalletJazzicon } from "src/ui/wallet/WalletJazzicon";
 import { formatWalletAddress } from "src/base/formatWalletAddress";
 import { getGSCCandidateUrl } from "src/integrations/commonwealth";
 import { useENSName } from "src/ui/ethereum/useEnsName";
-import { Delegate } from "@elementfi/council-delegates";
 
 const listOptions = [t`All`, t`For`, t`Against`, t`Abstained`] as const;
 type Option = typeof listOptions[number];
@@ -32,9 +32,7 @@ export const GSCVoteTallyDialog = ({
   return (
     <Dialog onClose={onClose} isOpen={isOpen} className="min-w-fit">
       <div className="flex min-w-full flex-col items-center space-y-4 p-4">
-        <div className="text-xl font-bold text-principalRoyalBlue">
-          {t`Voting List`}
-        </div>
+        <div className="text-fiatWhite text-xl font-bold">{t`Voting List`}</div>
         {/* Button List */}
         <div className="flex flex-wrap justify-center">
           {listOptions.map((option) => (
@@ -59,7 +57,7 @@ export const GSCVoteTallyDialog = ({
           <ul className="space-y-2">
             {filteredMembers.map((address) => (
               <li key={address}>
-                <VoterRow delegate={{ address, createdAt: "" }} />
+                <VoterRow delegate={{ address }} />
               </li>
             ))}
           </ul>
@@ -83,18 +81,18 @@ export function VoterRow(props: GSCMemberProfileRowProps): ReactElement {
     formatWalletAddress(delegate.address);
 
   const delegateNameElement = (
-    <span className="truncate">{formattedDelegateName}</span>
+    <span className="truncate text-fiatWhite">{formattedDelegateName}</span>
   );
 
   return (
-    <div className="flex w-full rounded-xl bg-hackerSky p-6">
+    <div className="bg-fiatLightGray flex w-full rounded-xl p-6">
       {/* Name */}
       <div className="mr-4 items-start ">
-        <div className="flex items-center font-bold text-principalRoyalBlue">
+        <div className="text-fiatWhite flex items-center font-bold">
           <WalletJazzicon
             account={delegate.address}
             size={20}
-            className="mr-2 h-5 w-5 rounded-xl bg-principalRoyalBlue"
+            className="bg-principalRoyalBlue mr-2 h-5 w-5 rounded-xl"
           />
           {delegate.commonwealthPostedFromAddress ? (
             <a

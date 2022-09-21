@@ -13,7 +13,7 @@ import ExternalLink from "src/ui/base/ExternalLink/ExternalLink";
 
 export function useDelegationVesting(
   address: string | null | undefined,
-  signer: Signer | null | undefined,
+  signer: Signer | undefined,
 ): UseMutationResult<
   ContractReceipt | undefined,
   unknown,
@@ -32,7 +32,7 @@ export function useDelegationVesting(
         <ExternalLink
           href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
           text={t`View on etherscan`}
-          className="text-principalRoyalBlue"
+          className="text-fiatWhite"
         />
       );
 

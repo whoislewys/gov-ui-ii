@@ -6,7 +6,7 @@ import ElementUrl from "src/urls";
 
 function Footer(): ReactElement {
   return (
-    <div className="flex w-full justify-end space-x-3 px-16 pb-8">
+    <div className="bg-appBackgroundDark flex w-full justify-end space-x-3 px-16 pb-8">
       <a href={ElementUrl.TWITTER}>
         <TwitterIcon />
       </a>

@@ -26,10 +26,10 @@ export function AirdropAmountCard({
       className="h-64 text-center shadow-[0_0_52px_rgba(143,216,231,.7)]"
     >
       <div className="flex h-full w-full flex-col items-center justify-center p-6">
-        <div className="mb-3 text-lg font-bold text-principalRoyalBlue text-opacity-60">{t`Claimable voting power`}</div>
-        <div className="flex justify-center gap-2 text-center text-5xl font-bold text-principalRoyalBlue">
+        <div className="text-fiatWhite mb-3 text-lg font-bold text-opacity-60">{t`Claimable voting power`}</div>
+        <div className="text-fiatWhite flex justify-center gap-2 text-center text-5xl font-bold">
           <ElementIconCircle
-            className="mr-2 bg-paleLily"
+            className="bg-paleLily mr-2"
             size={IconSize.LARGE}
           />
           <span>{airdropAmountLabel}</span>

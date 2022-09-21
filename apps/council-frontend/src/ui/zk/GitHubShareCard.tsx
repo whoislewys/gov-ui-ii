@@ -29,7 +29,7 @@ export default function GitHubShareCard({
   onShareClick,
 }: GitHubShareCardProps): ReactElement {
   return (
-    <Card className={className} variant={CardVariant.BLUE}>
+    <Card className={className} variant={CardVariant.DARK_GRAY}>
       <div className="flex flex-col items-center justify-center gap-2 px-4 pt-3 pb-4 text-center text-white md:px-14 md:pt-8 md:pb-14">
         <RadiantShieldIcon className="mb-5" />
         <div className="flex flex-col items-stretch">

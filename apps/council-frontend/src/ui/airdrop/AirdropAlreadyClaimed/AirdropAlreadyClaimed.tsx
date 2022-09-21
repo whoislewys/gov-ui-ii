@@ -19,7 +19,7 @@ export function AirdropAlreadyClaimed({
 }: AirdropAlreadyClaimedProps): ReactElement {
   return (
     <Card
-      variant={CardVariant.BLUE}
+      variant={CardVariant.DARK_GRAY}
       className="flex h-[600px] flex-col text-center text-white"
     >
       <div className="flex flex-col p-2">

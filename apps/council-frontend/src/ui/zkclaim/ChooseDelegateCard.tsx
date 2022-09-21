@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
-import { delegates } from "src/delegates/delegates";
+import { delegates } from "src/elf-council-delegates/delegates";
 import TextInput from "src/ui/base/Input/TextInput";
 import { Tag } from "src/ui/base/Tag/Tag";
 import { Intent } from "src/ui/base/Intent";
@@ -9,6 +9,7 @@ import { ButtonVariant } from "src/ui/base/Button/styles";
 import DelegateProfileRow from "src/ui/delegate/DelegatesList/DelegateProfileRow";
 import H2 from "src/ui/base/H2/H2";
 import { InputValidationIcon } from "src/ui/base/InputValidationIcon";
+import { ConnectWalletButton } from "src/ui/wallet/ConnectWalletButton";
 import useOnConnected from "src/ui/wallet/useOnConnected";
 import { CheckCircleIcon } from "@heroicons/react/solid";
 import { t } from "ttag";
@@ -17,7 +18,6 @@ import classNames from "classnames";
 import { useResolvedEnsName } from "src/ui/ethereum/useResolvedEnsName";
 import { Provider } from "@ethersproject/providers";
 import { isValidAddress } from "src/base/isValidAddress";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 interface ChooseDelegateCardProps {
   account: string;
@@ -40,16 +40,10 @@ export default function ChooseDelegateCard({
   const [customAddress, setCustomAddress] = useState<string>();
   const [isSelfDelegated, setIsSelfDelegated] = useState(false);
 
-  const { openConnectModal } = useConnectModal();
   const { data: resolvedDelegateAddress } = useResolvedEnsName(
     selectedAddress,
     provider,
   );
-
-  const handleSelfDelegateClick = () => {
-    setIsSelfDelegated(true);
-    openConnectModal && openConnectModal();
-  };
 
   useOnConnected(() => {
     if (isSelfDelegated) {
@@ -78,7 +72,7 @@ export default function ChooseDelegateCard({
 
   return (
     <Card
-      variant={CardVariant.BLUE}
+      variant={CardVariant.DARK_GRAY}
       className={classNames("relative", className)}
     >
       <div className="p-2 text-white sm:px-6 sm:py-4">
@@ -161,12 +155,11 @@ export default function ChooseDelegateCard({
                   </Button>
                 )
               ) : (
-                <Button
+                <ConnectWalletButton
+                  label="Self-delegate"
                   variant={ButtonVariant.OUTLINE_WHITE}
-                  onClick={handleSelfDelegateClick}
-                >
-                  {t`Self-delegate`}
-                </Button>
+                  onClick={() => setIsSelfDelegated(true)}
+                />
               )}
             </div>
           </div>
@@ -181,7 +174,7 @@ export default function ChooseDelegateCard({
                 error={!!customAddress && !isValidSelectedAddress}
                 containerClassName="flex-1"
                 className={classNames(
-                  "mb-4 h-12 flex-1 text-left text-principalRoyalBlue placeholder-principalRoyalBlue",
+                  "text-fiatWhite placeholder-principalRoyalBlue mb-4 h-12 flex-1 text-left",
                   {
                     "pr-12": !!customAddress && isValidSelectedAddress,
                   },

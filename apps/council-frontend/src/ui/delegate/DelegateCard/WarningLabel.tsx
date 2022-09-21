@@ -1,5 +1,5 @@
-import { ReactElement, ReactNode } from "react";
 import classNames from "classnames";
+import { ReactElement, ReactNode } from "react";
 
 interface WarningLabelProps {
   className?: string;
@@ -14,7 +14,7 @@ function WarningLabel({
     <div
       className={classNames(
         className,
-        "flex items-center rounded-md bg-alertOrange text-sm font-bold leading-5 text-white",
+        "bg-fiatLightGray text-fiatBlack flex items-center rounded-md text-sm font-bold leading-5",
       )}
     >
       {children}

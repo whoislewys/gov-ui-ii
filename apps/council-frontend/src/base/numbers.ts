@@ -1,6 +1,7 @@
 import { format } from "d3-format";
 import { commify } from "ethers/lib/utils";
 export const ANY_NUMBER_REGEX = /^-?[0-9]\d*\.?\d*$/;
+export const DECIMAL_PRECISION = 2
 
 /**
  * Number.isFinite doesn't type guard to number.
@@ -28,4 +29,11 @@ export function abbreviateLargeValue(value: number): string {
   }
 
   return commify(value);
+}
+
+export function formatNumberToFixed(num: number): string {
+  return num.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
 }

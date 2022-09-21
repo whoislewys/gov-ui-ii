@@ -1,16 +1,16 @@
 import { ReactElement, useEffect, useRef } from "react";
-import { Delegate } from "@elementfi/council-delegates";
-import { Provider } from "@ethersproject/providers";
-import classNames from "classnames";
 import { t } from "ttag";
-import { useAccount } from "wagmi";
 import H2 from "src/ui/base/H2/H2";
+import { Delegate } from "src/elf-council-delegates/delegates";
 import { WalletJazzicon } from "src/ui/wallet/WalletJazzicon";
+import classNames from "classnames";
 import Button from "src/ui/base/Button/Button";
 import { ButtonVariant } from "src/ui/base/Button/styles";
 import Tooltip from "src/ui/base/Tooltip/Tooltip";
+import { useWeb3React } from "@web3-react/core";
 import CloseButton from "src/ui/base/Dialog/CloseButton";
 import { useFormattedWalletAddress } from "src/ui/ethereum/useFormattedWalletAddress";
+import { Provider } from "@ethersproject/providers";
 
 interface DetailedDelegateProfileProps {
   provider?: Provider;
@@ -29,9 +29,9 @@ function DetailedDelegateProfile({
   selected,
   className = "",
 }: DetailedDelegateProfileProps): ReactElement {
-  const { address } = useAccount();
+  const { account } = useWeb3React();
   const previousSelectedRef = useRef<boolean>();
-  const chooseDelegateTooltip = !address ? t`Connect wallet` : "";
+  const chooseDelegateTooltip = !account ? t`Connect wallet` : "";
   const formattedAddress = useFormattedWalletAddress(
     delegate.address,
     provider,
@@ -65,7 +65,7 @@ function DetailedDelegateProfile({
                   size={20}
                   className="mr-3 h-5"
                 />
-                <H2 className="text-principalRoyalBlue">{delegate.name}</H2>
+                <H2 className="text-fiatWhite">{delegate.name}</H2>
               </div>
 
               <a
@@ -73,7 +73,7 @@ function DetailedDelegateProfile({
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="text-blueGrey hover:text-principalRoyalBlue">
+                <span className="text-blueGrey hover:text-fiatWhite">
                   {formattedAddress}
                 </span>
               </a>
@@ -81,8 +81,8 @@ function DetailedDelegateProfile({
 
             {/* Body */}
             <div className="mt-5">
-              <h3 className="text-principalRoyalBlue">{t`Personal Delegate Mission`}</h3>
-              <p className="mt-2 text-sm text-principalRoyalBlue">
+              <h3 className="text-fiatWhite">{t`Personal Delegate Mission`}</h3>
+              <p className="text-fiatWhite mt-2 text-sm">
                 {delegate.description}
               </p>
             </div>
@@ -92,7 +92,7 @@ function DetailedDelegateProfile({
           <div className="flex w-full flex-col md:w-[27.5%]">
             {/* Some handle/username */}
             <div>
-              <span className="text-xl font-bold text-principalRoyalBlue">
+              <span className="text-fiatWhite text-xl font-bold">
                 username.eth
               </span>
             </div>
@@ -106,8 +106,8 @@ function DetailedDelegateProfile({
 
             {/* Background */}
             <div className="mt-2">
-              <h3 className="text-principalRoyalBlue">{t`Background`}</h3>
-              <p className="text-sm text-principalRoyalBlue">
+              <h3 className="text-fiatWhite">{t`Background`}</h3>
+              <p className="text-fiatWhite text-sm">
                 Ex. Matcha, DyDX, ENS, Full stack engineer and solidity engineer
               </p>
             </div>

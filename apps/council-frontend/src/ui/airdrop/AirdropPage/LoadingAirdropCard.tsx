@@ -5,7 +5,7 @@ import { t } from "ttag";
 export function LoadingAirdropCard(): ReactElement {
   return (
     <Card
-      variant={CardVariant.BLUE}
+      variant={CardVariant.DARK_GRAY}
       className="flex h-full flex-col items-center justify-center text-center text-white"
     >
       <div className="mb-4 flex animate-pulse flex-col items-center justify-center text-center text-sm">

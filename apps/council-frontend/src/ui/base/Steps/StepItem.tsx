@@ -34,7 +34,7 @@ export function StepItem({
       </div>
       <div
         className={classNames(
-          "flex items-center justify-center text-center font-semibold text-principalRoyalBlue",
+          "text-fiatWhite flex items-center justify-center text-center font-semibold",
           {
             "text-opacity-50": status === StepStatus.PENDING,
           },
@@ -75,7 +75,7 @@ function StepLabel({ label, status }: StepLabelProps) {
   return (
     <div
       className={classNames(
-        "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-principalRoyalBlue",
+        "border-principalRoyalBlue flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2",
         {
           "bg-principalRoyalBlue": status === StepStatus.COMPLETE,
           "border-opacity-50": status === StepStatus.PENDING,
@@ -85,7 +85,7 @@ function StepLabel({ label, status }: StepLabelProps) {
       <span
         className={classNames(
           "font-semibold",
-          status === "complete" ? "text-white" : "text-principalRoyalBlue",
+          status === "complete" ? "text-white" : "text-fiatWhite",
           { "text-opacity-50": status === StepStatus.PENDING },
         )}
       >

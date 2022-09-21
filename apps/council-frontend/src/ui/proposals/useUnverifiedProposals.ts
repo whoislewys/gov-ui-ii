@@ -2,7 +2,7 @@ import { Proposal } from "@elementfi/council-proposals";
 import { useSmartContractEvents } from "@elementfi/react-query-typechain/src/hooks/useSmartContractEvents/useSmartContractEvents";
 import { Contract } from "ethers";
 import { getFromBlock } from "src/addresses/getFromBlock";
-import { coreVotingContract, gscCoreVotingContract } from "src/contracts";
+import { gscCoreVotingContract } from "src/fiat-contracts";
 import { t } from "ttag";
 
 /**
@@ -12,7 +12,7 @@ import { t } from "ttag";
  */
 export function useUnverifiedProposals(
   proposals: Proposal[],
-  contract: Contract = coreVotingContract,
+  contract: Contract,
 ): Proposal[] {
   const { data: events = [] } = useSmartContractEvents(
     contract,

@@ -1,4 +1,4 @@
-import { vestingContract } from "src/contracts";
+import { vestingContract } from "src/fiat-contracts";
 import {
   useQueryVotePower,
   useQueryVotePowerView,
@@ -7,8 +7,15 @@ import {
 export function useVestingVaultVotingPower(
   account: string | undefined | null,
   atBlockNumber?: number,
+  atTimestamp?: number,
 ): string {
-  return useQueryVotePower(account, vestingContract, atBlockNumber, "0x00");
+  return useQueryVotePower(
+    account,
+    vestingContract,
+    atBlockNumber,
+    atTimestamp,
+    "0x00",
+  );
 }
 
 export function useVestingVaultVotingPowerView(

@@ -7,7 +7,7 @@ import { t } from "ttag";
 
 import { formatAbbreviatedDate } from "src/base/dates";
 import { MS_PER_S, SECONDS_PER_BLOCK } from "src/base/time";
-import Card from "src/ui/base/Card/Card";
+import Card, { CardVariant } from "src/ui/base/Card/Card";
 import CardHeader from "src/ui/base/Card/CardHeader";
 import { ProposalStatusIcon } from "src/ui/proposals/ProposalList/ProposalStatusIcon";
 import { useSnapshotProposals } from "src/ui/proposals/useSnapshotProposals";
@@ -16,7 +16,7 @@ import { BallotIcon } from "./BallotIcon";
 
 interface ProposalListItemProps {
   account: string | null | undefined;
-  signer: Signer | null | undefined;
+  signer: Signer | undefined;
   proposal: Proposal;
   active: boolean;
   onClick: (proposalId: string | undefined) => void;
@@ -63,6 +63,7 @@ export function ProposalListItem({
       onClick={handleClick}
       key={proposal.proposalId}
       className="flex items-center justify-between"
+      variant={CardVariant.BLACK}
     >
       <div className="flex w-full flex-col space-y-4">
         <div className="flex flex-col justify-between">
@@ -72,7 +73,7 @@ export function ProposalListItem({
           />
           <div
             className={classNames(
-              "flex h-full items-center justify-between space-x-4 text-principalRoyalBlue",
+              "text-fiatWhite flex h-full items-center justify-between space-x-4",
             )}
           >
             {currentBlockNumber && (
