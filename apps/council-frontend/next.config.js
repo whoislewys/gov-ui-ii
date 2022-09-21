@@ -5,6 +5,10 @@ const nextConfig = {
   experimental: {
     externalDir: true,
   },
+  images: {
+    loader: "akamai",
+    path: "",
+  },
   eslint: {
     dirs: ["pages", "src"],
   },
