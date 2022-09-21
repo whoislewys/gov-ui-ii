@@ -110,7 +110,7 @@
   "homepage": "https://github.com/element-fi/frontend-monorepo",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build && next export",
     "build:tailwind": "npx tailwindcss build -i styles/globals.css -o src/tailwind.output.css",
     "dev": "next dev",
     "dev-goerli": "cross-env NEXT_PUBLIC_CHAIN_NAME=goerli next dev",
