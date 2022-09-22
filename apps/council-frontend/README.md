@@ -97,3 +97,25 @@ We have replaced this by moving the scraper into this repo, and storing the gene
 
 > NOTE: If you need to hand edit something to fix a typo for example, modify the `proposals/src/<chain_name>.ts` file!
 
+
+## Deploy
+
+Install fleek cli globally
+```bash
+npm install -g @fleekhq/fleek-cli
+```
+
+build with
+
+```
+yarn run build
+```
+
+Go to `out` directory
+
+```
+FLEEK_API_KEY=<your_fleek_api_key> fleek site:deploy
+```
+
+See here to get an api key:
+https://docs.fleek.co/fleek-cli/overview/#retrieving-and-using-an-api-key
