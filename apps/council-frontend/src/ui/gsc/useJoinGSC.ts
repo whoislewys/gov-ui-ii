@@ -6,17 +6,17 @@ import {
 } from "@elementfi/react-query-typechain/src/hooks/useSmartContractTransaction/useSmartContractTransaction";
 import { Signer } from "ethers";
 
-import { addressesJson } from "src/addresses";
+import { addressesJson, FiatAddressesJsonFile } from "src/addresses";
 import {
   gscVaultContract,
-  lockingVaultContract,
+  votingEscrowVaultContract,
   vestingContract,
-} from "src/contracts";
+} from "src/fiat-contracts";
 import { useQueryVotePowerView } from "src/ui/voting/useQueryVotePower";
-import { GSCVault } from "@elementfi/council-typechain";
+import { GSCVault } from "src/consilium-typechain";
 
-// TODO: migrate this to fiat contracts
-// const { lockingVault, vestingVault } = addressesJson.addresses;
+const fiatAddresses = addressesJson as FiatAddressesJsonFile;
+const { votingEscrow, vestingVault } = fiatAddresses.addresses;
 
 const EMPTY_BYTE = "0x00";
 
@@ -25,36 +25,34 @@ export function useJoinGSC(
   signer?: Signer,
   options?: UseSmartContractTransactionOptions<GSCVault, "proveMembership">,
 ): { handleJoin: () => Promise<void>; isLoading: boolean } {
-  // const { mutate: join, isLoading } = useSmartContractTransaction(
-  //   gscVaultContract,
-  //   "proveMembership",
-  //   signer,
-  //   options,
-  // );
+  const { mutate: join, isLoading } = useSmartContractTransaction(
+    gscVaultContract,
+    "proveMembership",
+    signer,
+    options,
+  );
 
-  // const lockingVaultVotePower = useQueryVotePowerView(
-  //   account,
-  //   lockingVaultContract,
-  // );
-  // const vestingVaultVotePower = useQueryVotePowerView(account, vestingContract);
+  const votingEscrowVotePower = useQueryVotePowerView(
+    account,
+    votingEscrowVaultContract,
+  );
+  const vestingVaultVotePower = useQueryVotePowerView(account, vestingContract);
 
-  // const handleJoin = useCallback(async () => {
-  //   const vaults: string[] = [];
+  const handleJoin = useCallback(async () => {
+    const vaults: string[] = [];
 
-  //   if (!!Number(lockingVaultVotePower)) {
-  //     vaults.push(lockingVault);
-  //   }
+    if (!!Number(votingEscrowVotePower)) {
+      vaults.push(votingEscrow);
+    }
 
-  //   if (!!Number(vestingVaultVotePower)) {
-  //     vaults.push(vestingVault);
-  //   }
+    if (!!Number(vestingVaultVotePower)) {
+      vaults.push(vestingVault);
+    }
 
-  //   // stub out empty bytes for the extra data since neither locking nor vesting use it
-  //   const extraData = vaults.map(() => EMPTY_BYTE);
-  //   join([vaults, extraData]);
-  // }, [join, lockingVaultVotePower, vestingVaultVotePower]);
+    // stub out empty bytes for the extra data since neither locking nor vesting use it
+    const extraData = vaults.map(() => EMPTY_BYTE);
+    join([vaults, extraData]);
+  }, [join, votingEscrowVaultContract, vestingVaultVotePower]);
 
-  // return { handleJoin, isLoading };
-
-  return { handleJoin: Promise.resolve, isLoading: false };
+  return { handleJoin, isLoading };
 }

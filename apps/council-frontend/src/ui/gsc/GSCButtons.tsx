@@ -7,7 +7,7 @@ import { jt, t } from "ttag";
 import { ButtonVariant } from "src/ui/base/Button/styles";
 import Button from "src/ui/base/Button/Button";
 import Dialog from "src/ui/base/Dialog/Dialog";
-// import { useJoinGSC } from "./useJoinGSC";
+import { useJoinGSC } from "./useJoinGSC";
 import { useKick } from "./useKickGSC";
 import toast from "react-hot-toast";
 import ExternalLink from "src/ui/base/ExternalLink/ExternalLink";
@@ -31,33 +31,33 @@ export function JoinGSCButton({
 }: GSCButtonProps): ReactElement {
   const toastIdRef = useRef<string>();
   const queryClient = useQueryClient();
-  // const { handleJoin, isLoading } = useJoinGSC(account, signer, {
-  //   onError: (e) => {
-  //     toast.error(e.message, { id: toastIdRef.current });
-  //   },
-  //   onTransactionSubmitted: (tx) => {
-  //     const etherscanLink = (
-  //       <ExternalLink
-  //         href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
-  //         text={t`View on etherscan`}
-  //         className="text-fiatWhite"
-  //       />
-  //     );
+  const { handleJoin, isLoading } = useJoinGSC(account, signer, {
+    onError: (e) => {
+      toast.error(e.message, { id: toastIdRef.current });
+    },
+    onTransactionSubmitted: (tx) => {
+      const etherscanLink = (
+        <ExternalLink
+          href={`${ETHERSCAN_TRANSACTION_DOMAIN}/${tx.hash}`}
+          text={t`View on etherscan`}
+          className="text-fiatWhite"
+        />
+      );
 
-  //     const message = (
-  //       <div>{jt`Confirming transaction... ${etherscanLink}`}</div>
-  //     );
+      const message = (
+        <div>{jt`Confirming transaction... ${etherscanLink}`}</div>
+      );
 
-  //     toastIdRef.current = toast.loading(message);
-  //   },
-  //   onTransactionMined: () => {
-  //     toast.success(t`Transaction successfully confirmed`, {
-  //       id: toastIdRef.current,
-  //     });
-  //     setDialogOpen(false);
-  //     queryClient.invalidateQueries();
-  //   },
-  // });
+      toastIdRef.current = toast.loading(message);
+    },
+    onTransactionMined: () => {
+      toast.success(t`Transaction successfully confirmed`, {
+        id: toastIdRef.current,
+      });
+      setDialogOpen(false);
+      queryClient.invalidateQueries();
+    },
+  });
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -66,7 +66,7 @@ export function JoinGSCButton({
       <Button
         variant={ButtonVariant.PRIMARY}
         disabled={disabled}
-        // loading={isLoading}
+        loading={isLoading}
         onClick={() => setDialogOpen(true)}
       >
         {isGSC ? t`Joined` : t`Join`}
@@ -92,7 +92,7 @@ export function JoinGSCButton({
               variant={ButtonVariant.GRADIENT}
               onClick={() => {
                 setDialogOpen(false);
-                // handleJoin();
+                handleJoin();
               }}
             >{t`Join`}</Button>
           </div>

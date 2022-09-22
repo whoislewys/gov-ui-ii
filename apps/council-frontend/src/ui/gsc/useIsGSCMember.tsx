@@ -1,6 +1,6 @@
 import { useSmartContractReadCall } from "@elementfi/react-query-typechain/src/hooks/useSmartContractReadCall/useSmartContractReadCall";
 import { QueryObserverResult } from "react-query";
-import { gscVaultContract } from "src/contracts";
+import { gscVaultContract } from "src/fiat-contracts";
 
 export function useIsGSCMember(
   account: string | null | undefined,
