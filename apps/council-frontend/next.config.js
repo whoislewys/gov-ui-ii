@@ -1,7 +1,7 @@
 const svgrTemplate = require("./svgr-template");
 
 const nextConfig = {
-  exportTrailingSlash: true,
+  trailingSlash: true,
   experimental: {
     externalDir: true,
   },

@@ -52,6 +52,7 @@
     "fuzzaldrin": "^2.1.0",
     "graphql": "^16.5.0",
     "graphql-request": "^3.7.0",
+    "hardhat": "^2.11.2",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.7",
     "lodash.isequal": "^4.5.0",

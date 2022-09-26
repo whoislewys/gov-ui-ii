@@ -8,20 +8,19 @@ import { useWeb3React } from "@web3-react/core";
 import { Signer } from "ethers";
 
 export default function ComitiumVault(): ReactElement {
-
   const { account, library } = useWeb3React();
   const signer = account ? (library?.getSigner(account) as Signer) : undefined;
 
   return (
     <VaultCard vaultTitle="ComitiumVault">
       <DetailCard label="Balance" data="x,xxx,xx" />
-      <DetailCard label="Lock Expiration" data="June 17, 2022" />
-      <DetailCard label="Voting Power" data="2,154 FDT" />
+      <DetailCard label="Lock Expiration" data="June xx, xxxx" />
+      <DetailCard label="Voting Power" data="x,xxx FDT" />
       <div className="h-20" />
-      <div className="flex w-full mt-2">
-        <ActionCard icon={<LockClosedIcon/>} text="Migrate" className="mr-4" />
-        <ActionCard icon={<LockClosedIcon/>} text="Withdraw" />
+      <div className="mt-2 flex w-full">
+        <ActionCard icon={<LockClosedIcon />} text="Migrate" className="mr-4" />
+        <ActionCard icon={<LockClosedIcon />} text="Withdraw" />
       </div>
     </VaultCard>
-  )
+  );
 }

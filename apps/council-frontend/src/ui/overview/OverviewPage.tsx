@@ -33,7 +33,7 @@ export function OverviewPage({
   return (
     <div className="h-full w-full space-y-6 xl:max-w-[1024px]">
       <Head>
-        <title>{t`Overview | Fiat Council Protocol`}</title>
+        <title>{t`Overview | Fiat Consilium Protocol`}</title>
       </Head>
 
       <div className="px-8 py-4" />
@@ -70,13 +70,13 @@ function FAQ() {
       variant={CardVariant.BLACK}
       className="w-full shadow-md xl:max-w-[512px]"
     >
-      <span className="text-fiatWhite text-xl font-bold tracking-widest">{t`FAQ`}</span>
+      <span className="text-xl font-bold tracking-widest text-fiatWhite">{t`FAQ`}</span>
       <div className="w-full pt-4">
-        <div className="bg-fiatBlack w-full rounded-2xl">
+        <div className="w-full rounded-2xl bg-fiatBlack">
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-fiatDarkGray p-4 text-left text-sm font-medium text-fiatWhite hover:bg-fiatDarkGray-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>{t`What is Consilium?`}</span>
                   <ChevronDownIcon
                     className={classNames(
@@ -87,7 +87,7 @@ function FAQ() {
                   />
                 </Disclosure.Button>
                 <Disclosure.Panel className="flex flex-col gap-3 px-4 pt-4 pb-2 text-sm text-gray-500">
-                  <p>{t`Council is an on-chain decentralized governance system through which a community can manage a DAO. It gives the community total flexibility over how to distribute Voting Power and allows it to adapt its governance system to the continuously evolving needs of the DAO.`}</p>
+                  <p>{t`Consilium is an on-chain decentralized governance system through which a community can manage a DAO. It gives the community total flexibility over how to distribute Voting Power and allows it to adapt its governance system to the continuously evolving needs of the DAO.`}</p>
                   <p>{t`The system also includes the optional structure of a Governance Steering Council (GSC) with added governance powers and responsibilities, all to be decided upon by the community.`}</p>
                   <p>{jt`This flexibility is possible thanks to the use of Voting Vaults. Learn more in ${faqDocsLink}`}</p>
                 </Disclosure.Panel>
@@ -97,7 +97,7 @@ function FAQ() {
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-fiatDarkGray p-4 text-left text-sm font-medium text-fiatWhite hover:bg-fiatDarkGray-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>{t`What is a voting vault?`}</span>
                   <ChevronDownIcon
                     className={classNames(
@@ -125,7 +125,7 @@ function FAQ() {
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-fiatDarkGray p-4 text-left text-sm font-medium text-fiatWhite hover:bg-fiatDarkGray-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>{t`How does delegated voting work?`}</span>
                   <ChevronDownIcon
                     className={classNames(
@@ -145,7 +145,7 @@ function FAQ() {
           <Disclosure as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="bg-fiatDarkGray text-fiatWhite hover:bg-fiatDarkGray-dark flex w-full justify-between rounded-lg px-4 py-4 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-fiatDarkGray p-4 text-left text-sm font-medium text-fiatWhite hover:bg-fiatDarkGray-dark focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>{t`Who are the GSC (Governance Steering Council)?`}</span>
                   <ChevronDownIcon
                     className={classNames(
