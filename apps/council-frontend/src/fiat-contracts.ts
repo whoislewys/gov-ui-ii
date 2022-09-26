@@ -2,22 +2,22 @@ import { addressesJson, FiatAddressesJsonFile } from "src/addresses";
 import { defaultProvider } from "src/providers/providers";
 import {
   VotingEscrow__factory,
-  ERC20Permit__factory,
   CoreVoting__factory,
   VestingVault__factory,
   GSCVault__factory,
   ComitiumVault__factory,
   VotingEscrowVault__factory,
+  IERC20__factory,
 } from "./consilium-typechain";
 
 const fiatAddresses = addressesJson as FiatAddressesJsonFile;
 
-export const fdtContract = ERC20Permit__factory.connect(
+export const fdtContract = IERC20__factory.connect(
   fiatAddresses.addresses.fdt,
   defaultProvider,
 );
 
-export const fdtEthLpTokenContract = ERC20Permit__factory.connect(
+export const fdtEthLpTokenContract = IERC20__factory.connect(
   fiatAddresses.addresses.fdtEthLpToken,
   defaultProvider,
 );

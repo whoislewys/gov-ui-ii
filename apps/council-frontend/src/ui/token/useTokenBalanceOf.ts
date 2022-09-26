@@ -9,7 +9,7 @@ import { IERC20, MockERC20 } from "src/consilium-typechain";
 // MockERC20 for FIAT LPToken on Goerli
 // IERC20 to support the mainnet FDT/ETH BalancerPoolToken (it inherits from this)
 export function useTokenBalanceOf(
-  contract: ERC20Permit | MockERC20 | IERC20 | undefined,
+  contract: IERC20 | undefined,
   address: string | null | undefined,
 ): QueryObserverResult<BigNumber> {
   return useSmartContractReadCall(contract, "balanceOf", {

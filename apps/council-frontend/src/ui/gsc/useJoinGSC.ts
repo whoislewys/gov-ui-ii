@@ -52,7 +52,7 @@ export function useJoinGSC(
     // stub out empty bytes for the extra data since neither locking nor vesting use it
     const extraData = vaults.map(() => EMPTY_BYTE);
     join([vaults, extraData]);
-  }, [join, votingEscrowVaultContract, vestingVaultVotePower]);
+  }, [join, votingEscrowVotePower, vestingVaultVotePower]);
 
   return { handleJoin, isLoading };
 }
