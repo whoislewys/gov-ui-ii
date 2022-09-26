@@ -50,18 +50,18 @@ Originally, Element had a script in a separate repo that scraped chain data and 
 
 We have replaced this by moving the scraper into this repo, and storing the generated json files in `src/proposals/ProposalJson/`
 
-
 #### OPEN QUESTIONS
 
 " TODO: in this new frontend repo, make sure the `yarn run build-proposals` scripts are working
 
-* How do we specify what contract & function to call when proposal is approved?
+- How do we specify what contract & function to call when proposal is approved?
 
 #### New Goerli Proposal
 
 > TODO: move create proposal functionality into this repo as well
 
 1. Create a new on-chain proposal via the `create-goerli-proposal` action in the `council-testnet` repo with:
+
    ```bash
    npm run create-goerli-proposal
    ```
@@ -82,6 +82,7 @@ We have replaced this by moving the scraper into this repo, and storing the gene
 > TODO: move create proposal functionality into this repo as well
 
 1. Create a new on-chain proposal via the `create-proposal` action in the `council-testnet` repo with:
+
    ```bash
    npm run create-proposal
    ```
@@ -97,23 +98,13 @@ We have replaced this by moving the scraper into this repo, and storing the gene
 
 > NOTE: If you need to hand edit something to fix a typo for example, modify the `proposals/src/<chain_name>.ts` file!
 
-
 ## Deploy
 
-Install fleek cli globally
+Install fleek cli globally, build, and deploy with:
+
 ```bash
 npm install -g @fleekhq/fleek-cli
-```
-
-build with
-
-```
 yarn run build
-```
-
-Go to `out` directory
-
-```
 FLEEK_API_KEY=<your_fleek_api_key> fleek site:deploy
 ```
 
