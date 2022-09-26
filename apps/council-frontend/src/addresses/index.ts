@@ -101,18 +101,18 @@ const waffleAddressList: AddressesJsonFile = {
 const fiatGoerliAddressList: FiatAddressesJsonFile = {
   chainId: 5,
   addresses: {
-    timeLock: "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c", // TODO: is this used?
-    comitiumVault: "0x715fe964468dEF62dFf79c8578B46Cc24873F8C0",
-    blocklist: "0x4D8aABfa3F34e817B5a733f61d2F0F8C5b74AAF4",
-    votingEscrow: "0xFB3376fe642aE62686403cE88A67F947EdDC237e",
-    votingEscrowVault: "0x02FF2037Ac67a9A4Ef7ABD962bbB57E932bA711B",
-    vestingVault: "0xb5Db4140b69F7BFce71F055549a9269ebb9d55e7",
+    timeLock: "0xfb7Aa841F7E77178412747569dC62996b3156313", // TODO: is this used?
+    comitiumVault: "0x8ad41eb51Ff3ce963982c0c2824278c7186f0A82",
+    blocklist: "0x98D00e81fB511c74E4aFcC55dB476C26e9E03EfF",
+    votingEscrow: "0x31E43538056913DdF4e702fB13D9fdA0796acfdc",
+    votingEscrowVault: "0xF927f24da1B1c3A0845E94f21e103a7A4685E755",
+    vestingVault: "0x462E7C4B9f7d6560C691790392b10ca9Fd5F0797",
     // leaving out simpleProxy, should confirm that's desirable
-    coreVoting: "0x4a96E0DC213F29EfC50E90849a94FAa5f93831b6",
-    GSCVault: "0x2608f2039e58EF06C379F04C86c3DF420074fFDF",
-    coreVotingGSC: "0xa9A12Ef5b04908A03a032F1A61C2eABf20BA93fB",
-    fdtEthLpToken: "0x0acb43977539038584f09f7BD17BF3d73F109141", // TODO: MockERC20 for goerli, in PROD FIAT token (might need Bal LP token too)
-    fdt: "0x83B773c13188dfD4841d2807ddde3FDE274641eE",
+    coreVoting: "0xa0BE5232eD649c632dA661C755C173634f3Dc845",
+    GSCVault: "0xD30c7351DBF60579E8a4481Ee4574a1363ad5039",
+    coreVotingGSC: "0xf9b60540CC09E0DefaC13224A1c57d079Aca0D18",
+    fdtEthLpToken: "0x5037d5Fe166a344dcE83279F328740403D755979", // TODO: MockERC20 for goerli, in PROD FIAT token (might need Bal LP token too)
+    fdt: "0xc54E9C9dFFD1119684ceaB9d25a0c3F28e659D2d",
 
     // spender: string; // don't exist in the genned file, needed?
     // airdrop: string;
