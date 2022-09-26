@@ -1,6 +1,6 @@
 {
   "LP-ETH-FDT": {
-    "address": "0x0acb43977539038584f09f7BD17BF3d73F109141",
+    "address": "0x5037d5Fe166a344dcE83279F328740403D755979",
     "constructorArgs": [
       "LP-FDT",
       "FDT-ETH",
@@ -8,7 +8,7 @@
     ]
   },
   "FDT": {
-    "address": "0x83B773c13188dfD4841d2807ddde3FDE274641eE",
+    "address": "0xc54E9C9dFFD1119684ceaB9d25a0c3F28e659D2d",
     "constructorArgs": [
       "FiatDAO",
       "FDT",
@@ -16,47 +16,47 @@
     ]
   },
   "deployerConsilium": {
-    "address": "0x1Cd2CD25db4bD55dFC15Cc58B9d1B08EeF8F3E3f",
+    "address": "0x7667a32E5cE57847b517ffCD76516514AdD0CCb5",
     "constructorArgs": []
   },
   "timelockFactory": {
-    "address": "0x20EBCc6bc6F0bbfa0D28Ab3deb98F0403f3f6cD7",
+    "address": "0x75b63DFB94c49C55D859D153E871BB735132764C",
     "constructorArgs": []
   },
   "coreVotingFactory": {
-    "address": "0x1b9Ae806568Ed76cBdF2607942a872Ba9fcb1868",
+    "address": "0x52455Aae0C5FcDd9F78555A5413c005D13250fBB",
     "constructorArgs": []
   },
   "gscVaultFactory": {
-    "address": "0x253338cE363efD7d733b6Bc99b541dF8bF9537A6",
+    "address": "0x1e27598522CaD8CFb16B21c75CC813f36c5a9791",
     "constructorArgs": []
   },
   "blocklistFactory": {
-    "address": "0xce3AcF2154ac9D906A59720B91b2238d9C4A5D32",
+    "address": "0xD78242bF4bAd33307187f89C25B53Bb256BeC974",
     "constructorArgs": []
   },
   "votingEscrowFactory": {
-    "address": "0xFB4A6f8FA0b7c589b5AC08eE4090b8A5d93d9a5e",
+    "address": "0x6F7c47beF3C17A1a4ed8884EbA3e5588749961A1",
     "constructorArgs": []
   },
   "votingEscrowVaultFactory": {
-    "address": "0xF8ae2e4a8309e94839f2C4E00e2860b577674A89",
+    "address": "0xC33b972B8207D041E9A2C518F3261a1568437110",
     "constructorArgs": []
   },
   "vestingVaultFactory": {
-    "address": "0x02Def522F5045d51AAB16f67783D937f897c5991",
+    "address": "0x171b18A69F9Ae4E7cf973caE6f30c482100B2291",
     "constructorArgs": []
   },
   "simpleProxyFactory": {
-    "address": "0x1D2FFB505Ed79Df83CA5e9b59F062ba659c47fBe",
+    "address": "0xE885a0755352F0F095F7B85628274cDc2dc52B2a",
     "constructorArgs": []
   },
   "consiliumVaultFactory": {
-    "address": "0x6B6E24aA4474244140Dc42BD20829d559Ba4B251",
+    "address": "0x1237aB3EF050e2fe9AB7D1b7806923769A2AA26C",
     "constructorArgs": []
   },
   "timelock": {
-    "address": "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c",
+    "address": "0xfb7Aa841F7E77178412747569dC62996b3156313",
     "constructorArgs": [
       {
         "type": "BigNumber",
@@ -67,7 +67,7 @@
     ]
   },
   "comitiumVault": {
-    "address": "0x715fe964468dEF62dFf79c8578B46Cc24873F8C0",
+    "address": "0x8ad41eb51Ff3ce963982c0c2824278c7186f0A82",
     "constructorArgs": [
       "0x0000000000000000000000000000000000000000",
       {
@@ -81,40 +81,38 @@
     ]
   },
   "blocklist": {
-    "address": "0x4D8aABfa3F34e817B5a733f61d2F0F8C5b74AAF4",
-    "constructorArgs": [
-      "0x2f38f10e1862752Bc061624cDC6A508C3767032F"
-    ]
+    "address": "0x98D00e81fB511c74E4aFcC55dB476C26e9E03EfF",
+    "constructorArgs": ["0x2f38f10e1862752Bc061624cDC6A508C3767032F"]
   },
   "votingEscrow": {
-    "address": "0xFB3376fe642aE62686403cE88A67F947EdDC237e",
+    "address": "0x31E43538056913DdF4e702fB13D9fdA0796acfdc",
     "constructorArgs": [
       "0x2f38f10e1862752Bc061624cDC6A508C3767032F",
-      "0x0acb43977539038584f09f7BD17BF3d73F109141"
+      "0x5037d5Fe166a344dcE83279F328740403D755979"
     ]
   },
   "votingEscrowVault": {
-    "address": "0x02FF2037Ac67a9A4Ef7ABD962bbB57E932bA711B",
+    "address": "0xF927f24da1B1c3A0845E94f21e103a7A4685E755",
     "constructorArgs": [
       "0x2f38f10e1862752Bc061624cDC6A508C3767032F",
-      "0xFB3376fe642aE62686403cE88A67F947EdDC237e"
+      "0x31E43538056913DdF4e702fB13D9fdA0796acfdc"
     ]
   },
   "vestingVault": {
-    "address": "0xb5Db4140b69F7BFce71F055549a9269ebb9d55e7",
+    "address": "0x462E7C4B9f7d6560C691790392b10ca9Fd5F0797",
     "constructorArgs": [
-      "0x0acb43977539038584f09f7BD17BF3d73F109141",
+      "0x5037d5Fe166a344dcE83279F328740403D755979",
       "0x2f38f10e1862752Bc061624cDC6A508C3767032F"
     ]
   },
   "simpleProxy": {
-    "address": "0x45deB56d0428B130CecD83BfDC7ab848E605AD6C",
+    "address": "0x28573B1d81D7b14aC3b4567c813F0700Ce73d771",
     "constructorArgs": []
   },
   "coreVoting": {
-    "address": "0x4a96E0DC213F29EfC50E90849a94FAa5f93831b6",
+    "address": "0xa0BE5232eD649c632dA661C755C173634f3Dc845",
     "constructorArgs": [
-      "0x1Cd2CD25db4bD55dFC15Cc58B9d1B08EeF8F3E3f",
+      "0x7667a32E5cE57847b517ffCD76516514AdD0CCb5",
       {
         "type": "BigNumber",
         "hex": "0x00"
@@ -123,29 +121,29 @@
         "type": "BigNumber",
         "hex": "0x00"
       },
-      "0xa9A12Ef5b04908A03a032F1A61C2eABf20BA93fB",
+      "0xf9b60540CC09E0DefaC13224A1c57d079Aca0D18",
       [
-        "0x715fe964468dEF62dFf79c8578B46Cc24873F8C0",
-        "0x02FF2037Ac67a9A4Ef7ABD962bbB57E932bA711B",
-        "0x45deB56d0428B130CecD83BfDC7ab848E605AD6C"
+        "0x8ad41eb51Ff3ce963982c0c2824278c7186f0A82",
+        "0xF927f24da1B1c3A0845E94f21e103a7A4685E755",
+        "0x28573B1d81D7b14aC3b4567c813F0700Ce73d771"
       ]
     ]
   },
   "GSCVault": {
-    "address": "0x2608f2039e58EF06C379F04C86c3DF420074fFDF",
+    "address": "0xD30c7351DBF60579E8a4481Ee4574a1363ad5039",
     "constructorArgs": [
-      "0x4a96E0DC213F29EfC50E90849a94FAa5f93831b6",
+      "0xa0BE5232eD649c632dA661C755C173634f3Dc845",
       {
         "type": "BigNumber",
         "hex": "0x00"
       },
-      "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c"
+      "0xfb7Aa841F7E77178412747569dC62996b3156313"
     ]
   },
   "coreVotingGSC": {
-    "address": "0xa9A12Ef5b04908A03a032F1A61C2eABf20BA93fB",
+    "address": "0xf9b60540CC09E0DefaC13224A1c57d079Aca0D18",
     "constructorArgs": [
-      "0xc63C514B6c51ea9447250dE62BD5F95856Fb269c",
+      "0xfb7Aa841F7E77178412747569dC62996b3156313",
       {
         "type": "BigNumber",
         "hex": "0x00"
@@ -155,9 +153,7 @@
         "hex": "0x00"
       },
       "0x0000000000000000000000000000000000000000",
-      [
-        "0x2608f2039e58EF06C379F04C86c3DF420074fFDF"
-      ]
+      ["0xD30c7351DBF60579E8a4481Ee4574a1363ad5039"]
     ]
   }
 }

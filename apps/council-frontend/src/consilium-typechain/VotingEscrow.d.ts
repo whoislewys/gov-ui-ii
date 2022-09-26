@@ -32,6 +32,7 @@ interface VotingEscrowInterface extends ethers.utils.Interface {
     "createLock(uint256,uint256)": FunctionFragment;
     "decimals()": FunctionFragment;
     "delegate(address)": FunctionFragment;
+    "forceUndelegate(address)": FunctionFragment;
     "getLastUserPoint(address)": FunctionFragment;
     "globalEpoch()": FunctionFragment;
     "increaseAmount(uint256)": FunctionFragment;
@@ -46,6 +47,7 @@ interface VotingEscrowInterface extends ethers.utils.Interface {
     "pointHistory(uint256)": FunctionFragment;
     "quitLock()": FunctionFragment;
     "slopeChanges(uint256)": FunctionFragment;
+    "supply()": FunctionFragment;
     "symbol()": FunctionFragment;
     "token()": FunctionFragment;
     "totalSupply()": FunctionFragment;
@@ -62,100 +64,105 @@ interface VotingEscrowInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "MAXTIME", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "MULTIPLIER",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(functionFragment: "WEEK", values?: undefined): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(
     functionFragment: "balanceOfAt",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "blocklist", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "checkpoint",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "collectPenalty",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "createLock",
-    values: [BigNumberish, BigNumberish]
+    values: [BigNumberish, BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
   encodeFunctionData(functionFragment: "delegate", values: [string]): string;
   encodeFunctionData(
+    functionFragment: "forceUndelegate",
+    values: [string],
+  ): string;
+  encodeFunctionData(
     functionFragment: "getLastUserPoint",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "globalEpoch",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "increaseAmount",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "increaseUnlockTime",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "lockEnd", values: [string]): string;
   encodeFunctionData(functionFragment: "locked", values: [string]): string;
   encodeFunctionData(
     functionFragment: "maxPenalty",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "penaltyAccumulated",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "penaltyRecipient",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "pointHistory",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "quitLock", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "slopeChanges",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
+  encodeFunctionData(functionFragment: "supply", values?: undefined): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(functionFragment: "token", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "totalSupply",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "totalSupplyAt",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "transferOwnership",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(functionFragment: "unlock", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "updateBlocklist",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "updatePenaltyRecipient",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "userPointEpoch",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "userPointHistory",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
 
@@ -165,32 +172,36 @@ interface VotingEscrowInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "balanceOfAt",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "blocklist", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "checkpoint", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "collectPenalty",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "createLock", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "delegate", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "forceUndelegate",
+    data: BytesLike,
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getLastUserPoint",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "globalEpoch",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "increaseAmount",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "increaseUnlockTime",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "lockEnd", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "locked", data: BytesLike): Result;
@@ -199,51 +210,52 @@ interface VotingEscrowInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "penaltyAccumulated",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "penaltyRecipient",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "pointHistory",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "quitLock", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "slopeChanges",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
+  decodeFunctionResult(functionFragment: "supply", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "token", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "totalSupply",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "totalSupplyAt",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "transferOwnership",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "unlock", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "updateBlocklist",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "updatePenaltyRecipient",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "userPointEpoch",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "userPointHistory",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 
@@ -272,26 +284,26 @@ export class VotingEscrow extends BaseContract {
   deployed(): Promise<this>;
 
   listeners<EventArgsArray extends Array<any>, EventArgsObject>(
-    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>,
   ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
   off<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   on<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   once<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
-    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
   ): this;
 
   listeners(eventName?: string): Array<Listener>;
@@ -304,7 +316,7 @@ export class VotingEscrow extends BaseContract {
   queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
     event: TypedEventFilter<EventArgsArray, EventArgsObject>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: VotingEscrowInterface;
@@ -321,35 +333,40 @@ export class VotingEscrow extends BaseContract {
     balanceOfAt(
       _owner: string,
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     blocklist(overrides?: CallOverrides): Promise<[string]>;
 
     checkpoint(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     collectPenalty(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     createLock(
       _value: BigNumberish,
       _unlockTime: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     decimals(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     delegate(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
+    ): Promise<ContractTransaction>;
+
+    forceUndelegate(
+      _addr: string,
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     getLastUserPoint(
       _addr: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber] & {
         bias: BigNumber;
@@ -362,24 +379,24 @@ export class VotingEscrow extends BaseContract {
 
     increaseAmount(
       _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     increaseUnlockTime(
       _unlockTime: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     lockEnd(_addr: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     locked(
       arg0: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, string] & {
         amount: BigNumber;
-        end: BigNumber;
         delegated: BigNumber;
+        end: BigNumber;
         delegatee: string;
       }
     >;
@@ -396,7 +413,7 @@ export class VotingEscrow extends BaseContract {
 
     pointHistory(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, BigNumber] & {
         bias: BigNumber;
@@ -407,13 +424,15 @@ export class VotingEscrow extends BaseContract {
     >;
 
     quitLock(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     slopeChanges(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
+
+    supply(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
@@ -423,37 +442,37 @@ export class VotingEscrow extends BaseContract {
 
     totalSupplyAt(
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     transferOwnership(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     unlock(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     updateBlocklist(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     updatePenaltyRecipient(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     userPointEpoch(
       arg0: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     userPointHistory(
       arg0: string,
       arg1: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, BigNumber] & {
         bias: BigNumber;
@@ -464,7 +483,7 @@ export class VotingEscrow extends BaseContract {
     >;
 
     withdraw(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
   };
 
@@ -479,35 +498,40 @@ export class VotingEscrow extends BaseContract {
   balanceOfAt(
     _owner: string,
     _blockNumber: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   blocklist(overrides?: CallOverrides): Promise<string>;
 
   checkpoint(
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   collectPenalty(
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   createLock(
     _value: BigNumberish,
     _unlockTime: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
   delegate(
     _addr: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
+  ): Promise<ContractTransaction>;
+
+  forceUndelegate(
+    _addr: string,
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   getLastUserPoint(
     _addr: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<
     [BigNumber, BigNumber, BigNumber] & {
       bias: BigNumber;
@@ -520,24 +544,24 @@ export class VotingEscrow extends BaseContract {
 
   increaseAmount(
     _value: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   increaseUnlockTime(
     _unlockTime: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   lockEnd(_addr: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   locked(
     arg0: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<
     [BigNumber, BigNumber, BigNumber, string] & {
       amount: BigNumber;
-      end: BigNumber;
       delegated: BigNumber;
+      end: BigNumber;
       delegatee: string;
     }
   >;
@@ -554,7 +578,7 @@ export class VotingEscrow extends BaseContract {
 
   pointHistory(
     arg0: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<
     [BigNumber, BigNumber, BigNumber, BigNumber] & {
       bias: BigNumber;
@@ -565,13 +589,15 @@ export class VotingEscrow extends BaseContract {
   >;
 
   quitLock(
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   slopeChanges(
     arg0: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
+
+  supply(overrides?: CallOverrides): Promise<BigNumber>;
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -581,26 +607,26 @@ export class VotingEscrow extends BaseContract {
 
   totalSupplyAt(
     _blockNumber: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   transferOwnership(
     _addr: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   unlock(
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   updateBlocklist(
     _addr: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   updatePenaltyRecipient(
     _addr: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   userPointEpoch(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -608,7 +634,7 @@ export class VotingEscrow extends BaseContract {
   userPointHistory(
     arg0: string,
     arg1: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<
     [BigNumber, BigNumber, BigNumber, BigNumber] & {
       bias: BigNumber;
@@ -619,7 +645,7 @@ export class VotingEscrow extends BaseContract {
   >;
 
   withdraw(
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -634,7 +660,7 @@ export class VotingEscrow extends BaseContract {
     balanceOfAt(
       _owner: string,
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     blocklist(overrides?: CallOverrides): Promise<string>;
@@ -646,16 +672,18 @@ export class VotingEscrow extends BaseContract {
     createLock(
       _value: BigNumberish,
       _unlockTime: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
     delegate(_addr: string, overrides?: CallOverrides): Promise<void>;
 
+    forceUndelegate(_addr: string, overrides?: CallOverrides): Promise<void>;
+
     getLastUserPoint(
       _addr: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber] & {
         bias: BigNumber;
@@ -668,24 +696,24 @@ export class VotingEscrow extends BaseContract {
 
     increaseAmount(
       _value: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     increaseUnlockTime(
       _unlockTime: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     lockEnd(_addr: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     locked(
       arg0: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, string] & {
         amount: BigNumber;
-        end: BigNumber;
         delegated: BigNumber;
+        end: BigNumber;
         delegatee: string;
       }
     >;
@@ -702,7 +730,7 @@ export class VotingEscrow extends BaseContract {
 
     pointHistory(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, BigNumber] & {
         bias: BigNumber;
@@ -716,8 +744,10 @@ export class VotingEscrow extends BaseContract {
 
     slopeChanges(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
+
+    supply(overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -727,7 +757,7 @@ export class VotingEscrow extends BaseContract {
 
     totalSupplyAt(
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     transferOwnership(_addr: string, overrides?: CallOverrides): Promise<void>;
@@ -738,7 +768,7 @@ export class VotingEscrow extends BaseContract {
 
     updatePenaltyRecipient(
       _addr: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     userPointEpoch(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -746,7 +776,7 @@ export class VotingEscrow extends BaseContract {
     userPointHistory(
       arg0: string,
       arg1: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, BigNumber] & {
         bias: BigNumber;
@@ -762,7 +792,7 @@ export class VotingEscrow extends BaseContract {
   filters: {
     CollectPenalty(
       amount?: null,
-      recipient?: null
+      recipient?: string | null,
     ): TypedEventFilter<
       [BigNumber, string],
       { amount: BigNumber; recipient: string }
@@ -773,7 +803,7 @@ export class VotingEscrow extends BaseContract {
       value?: null,
       locktime?: null,
       action?: BigNumberish | null,
-      ts?: null
+      ts?: null,
     ): TypedEventFilter<
       [string, BigNumber, BigNumber, number, BigNumber],
       {
@@ -786,24 +816,24 @@ export class VotingEscrow extends BaseContract {
     >;
 
     TransferOwnership(
-      owner?: null
+      owner?: string | null,
     ): TypedEventFilter<[string], { owner: string }>;
 
     Unlock(): TypedEventFilter<[], {}>;
 
     UpdateBlocklist(
-      blocklist?: null
+      blocklist?: string | null,
     ): TypedEventFilter<[string], { blocklist: string }>;
 
     UpdatePenaltyRecipient(
-      recipient?: null
+      recipient?: string | null,
     ): TypedEventFilter<[string], { recipient: string }>;
 
     Withdraw(
       provider?: string | null,
       value?: null,
       action?: BigNumberish | null,
-      ts?: null
+      ts?: null,
     ): TypedEventFilter<
       [string, BigNumber, number, BigNumber],
       { provider: string; value: BigNumber; action: number; ts: BigNumber }
@@ -822,47 +852,52 @@ export class VotingEscrow extends BaseContract {
     balanceOfAt(
       _owner: string,
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     blocklist(overrides?: CallOverrides): Promise<BigNumber>;
 
     checkpoint(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     collectPenalty(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     createLock(
       _value: BigNumberish,
       _unlockTime: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
     delegate(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
+    ): Promise<BigNumber>;
+
+    forceUndelegate(
+      _addr: string,
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     getLastUserPoint(
       _addr: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     globalEpoch(overrides?: CallOverrides): Promise<BigNumber>;
 
     increaseAmount(
       _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     increaseUnlockTime(
       _unlockTime: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     lockEnd(_addr: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -881,17 +916,19 @@ export class VotingEscrow extends BaseContract {
 
     pointHistory(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     quitLock(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     slopeChanges(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
+
+    supply(overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -901,26 +938,26 @@ export class VotingEscrow extends BaseContract {
 
     totalSupplyAt(
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     transferOwnership(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     unlock(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     updateBlocklist(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     updatePenaltyRecipient(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     userPointEpoch(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -928,11 +965,11 @@ export class VotingEscrow extends BaseContract {
     userPointHistory(
       arg0: string,
       arg1: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     withdraw(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
   };
 
@@ -945,63 +982,68 @@ export class VotingEscrow extends BaseContract {
 
     balanceOf(
       _owner: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     balanceOfAt(
       _owner: string,
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     blocklist(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     checkpoint(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     collectPenalty(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     createLock(
       _value: BigNumberish,
       _unlockTime: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     delegate(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
+    ): Promise<PopulatedTransaction>;
+
+    forceUndelegate(
+      _addr: string,
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     getLastUserPoint(
       _addr: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     globalEpoch(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     increaseAmount(
       _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     increaseUnlockTime(
       _unlockTime: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     lockEnd(
       _addr: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     locked(
       arg0: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     maxPenalty(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1011,24 +1053,26 @@ export class VotingEscrow extends BaseContract {
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     penaltyAccumulated(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     penaltyRecipient(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     pointHistory(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     quitLock(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     slopeChanges(
       arg0: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
+
+    supply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -1038,41 +1082,41 @@ export class VotingEscrow extends BaseContract {
 
     totalSupplyAt(
       _blockNumber: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     transferOwnership(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     unlock(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     updateBlocklist(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     updatePenaltyRecipient(
       _addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     userPointEpoch(
       arg0: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     userPointHistory(
       arg0: string,
       arg1: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     withdraw(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
   };
 }

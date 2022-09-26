@@ -21,18 +21,27 @@ import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface BlocklistInterface extends ethers.utils.Interface {
   functions: {
-    "block(address)": FunctionFragment;
+    "blockContract(address)": FunctionFragment;
     "isBlocked(address)": FunctionFragment;
     "manager()": FunctionFragment;
+    "ve()": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "block", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "blockContract",
+    values: [string],
+  ): string;
   encodeFunctionData(functionFragment: "isBlocked", values: [string]): string;
   encodeFunctionData(functionFragment: "manager", values?: undefined): string;
+  encodeFunctionData(functionFragment: "ve", values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: "block", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "blockContract",
+    data: BytesLike,
+  ): Result;
   decodeFunctionResult(functionFragment: "isBlocked", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "manager", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ve", data: BytesLike): Result;
 
   events: {};
 }
@@ -43,26 +52,26 @@ export class Blocklist extends BaseContract {
   deployed(): Promise<this>;
 
   listeners<EventArgsArray extends Array<any>, EventArgsObject>(
-    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>,
   ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
   off<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   on<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   once<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
-    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
   ): this;
 
   listeners(eventName?: string): Array<Listener>;
@@ -75,63 +84,73 @@ export class Blocklist extends BaseContract {
   queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
     event: TypedEventFilter<EventArgsArray, EventArgsObject>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: BlocklistInterface;
 
   functions: {
-    block(
+    blockContract(
       addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
     isBlocked(addr: string, overrides?: CallOverrides): Promise<[boolean]>;
 
     manager(overrides?: CallOverrides): Promise<[string]>;
+
+    ve(overrides?: CallOverrides): Promise<[string]>;
   };
 
-  block(
+  blockContract(
     addr: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   isBlocked(addr: string, overrides?: CallOverrides): Promise<boolean>;
 
   manager(overrides?: CallOverrides): Promise<string>;
 
+  ve(overrides?: CallOverrides): Promise<string>;
+
   callStatic: {
-    block(addr: string, overrides?: CallOverrides): Promise<void>;
+    blockContract(addr: string, overrides?: CallOverrides): Promise<void>;
 
     isBlocked(addr: string, overrides?: CallOverrides): Promise<boolean>;
 
     manager(overrides?: CallOverrides): Promise<string>;
+
+    ve(overrides?: CallOverrides): Promise<string>;
   };
 
   filters: {};
 
   estimateGas: {
-    block(
+    blockContract(
       addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
     isBlocked(addr: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     manager(overrides?: CallOverrides): Promise<BigNumber>;
+
+    ve(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    block(
+    blockContract(
       addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
     isBlocked(
       addr: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     manager(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    ve(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

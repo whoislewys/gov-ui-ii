@@ -21,17 +21,17 @@ import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface BlocklistFactoryInterface extends ethers.utils.Interface {
   functions: {
-    "newBlocklist(address)": FunctionFragment;
+    "newBlocklist(address,address)": FunctionFragment;
   };
 
   encodeFunctionData(
     functionFragment: "newBlocklist",
-    values: [string]
+    values: [string, string],
   ): string;
 
   decodeFunctionResult(
     functionFragment: "newBlocklist",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
 
   events: {};
@@ -43,26 +43,26 @@ export class BlocklistFactory extends BaseContract {
   deployed(): Promise<this>;
 
   listeners<EventArgsArray extends Array<any>, EventArgsObject>(
-    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>,
   ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
   off<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   on<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   once<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
     eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
-    listener: TypedListener<EventArgsArray, EventArgsObject>
+    listener: TypedListener<EventArgsArray, EventArgsObject>,
   ): this;
   removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
-    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
   ): this;
 
   listeners(eventName?: string): Array<Listener>;
@@ -75,7 +75,7 @@ export class BlocklistFactory extends BaseContract {
   queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
     event: TypedEventFilter<EventArgsArray, EventArgsObject>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: BlocklistFactoryInterface;
@@ -83,17 +83,23 @@ export class BlocklistFactory extends BaseContract {
   functions: {
     newBlocklist(
       _manager: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      _ve: string,
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
   };
 
   newBlocklist(
     _manager: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    _ve: string,
+    overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    newBlocklist(_manager: string, overrides?: CallOverrides): Promise<string>;
+    newBlocklist(
+      _manager: string,
+      _ve: string,
+      overrides?: CallOverrides,
+    ): Promise<string>;
   };
 
   filters: {};
@@ -101,14 +107,16 @@ export class BlocklistFactory extends BaseContract {
   estimateGas: {
     newBlocklist(
       _manager: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      _ve: string,
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     newBlocklist(
       _manager: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      _ve: string,
+      overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
   };
 }

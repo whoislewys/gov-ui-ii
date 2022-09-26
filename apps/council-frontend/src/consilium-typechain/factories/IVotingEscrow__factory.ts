@@ -84,6 +84,19 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "_addr",
+        type: "address",
+      },
+    ],
+    name: "forceUndelegate",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "uint256",
         name: "_value",
         type: "uint256",
@@ -162,7 +175,7 @@ export class IVotingEscrow__factory {
   }
   static connect(
     address: string,
-    signerOrProvider: Signer | Provider
+    signerOrProvider: Signer | Provider,
   ): IVotingEscrow {
     return new Contract(address, _abi, signerOrProvider) as IVotingEscrow;
   }
