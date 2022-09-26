@@ -45,11 +45,11 @@ export function SummaryCards({
         }
         balance={numActiveProposals}
       />
-      <SummaryCard
-        title={t`Total Participants`}
-        balance={`TODO: (fake number): ${numDelegates}`}
-        tooltipContent={t`The number of unique delegates (including self-delegates) with voting power in the system.`}
-      />
+      {/* <SummaryCard */}
+      {/*   title={t`Total Participants`} */}
+      {/*   balance={`TODO: (fake number): ${numDelegates}`} */}
+      {/*   tooltipContent={t`The number of unique delegates (including self-delegates) with voting power in the system.`} */}
+      {/* /> */}
       <SummaryCard
         title={t`Circulating Voting Power`}
         balance={`${formattedTotalVotingPower}`}
