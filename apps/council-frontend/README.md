@@ -70,7 +70,7 @@ We have replaced this by moving the scraper into this repo, and storing the gene
 
 1. Create a new snapshot proposal on [https://demo.snapshot.org/#/fiatdao-goerli.eth](https://demo.snapshot.org/#/fiatdao-goerli.eth)
 
-1. Copy the respective values from the script output into the objects in `proposals/src/goerli.ts` that start around L55. For the first object, `snapshotIdsByProposalId`, the value can be found at the tail end of the URL of the Snapshot proposal you just created. The other values are output by the script for your convenience. The keys for the new values should be the id of the proposal you just created, as shown in the screenshot below.
+1. Copy the respective values from the script output into the objects in `proposals/src/goerli.ts` that start around L55. For the first object, `snapshotIdsByProposalId`, the value can be found at the tail end of the URL of the Snapshot proposal you just created. The other values are output by the script for your convenience. The keys for the new values should be the id of the proposal you just created.
 
 1. Update the proposals that the frontend displays by running the `build-proposals-goerli` script in this repo with:
    ```bash
