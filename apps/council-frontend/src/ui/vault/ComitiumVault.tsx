@@ -12,10 +12,10 @@ export default function ComitiumVault(): ReactElement {
   const signer = account ? (library?.getSigner(account) as Signer) : undefined;
 
   return (
-    <VaultCard vaultTitle="ComitiumVault">
+    <VaultCard vaultTitle="Comitium Vault">
       <DetailCard label="Balance" data="x,xxx,xx" />
       <DetailCard label="Lock Expiration" data="June xx, xxxx" />
-      <DetailCard label="Voting Power" data="x,xxx FDT" />
+      <DetailCard label="Voting Power" data="x,xxx" />
       <div className="h-20" />
       <div className="mt-2 flex w-full">
         <ActionCard icon={<LockClosedIcon />} text="Migrate" className="mr-4" />
