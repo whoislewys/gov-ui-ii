@@ -4,26 +4,26 @@ import { Label } from "src/ui/base/Label/Label";
 import { t } from "ttag";
 
 interface DetailCardProps {
-  label: string
-  data: string
+  label: string;
+  data: string | number;
 }
 
 function DetailCard(props: DetailCardProps): ReactElement {
-  const {
-    label,
-    data,
-  } = props;
+  const { label, data } = props;
 
   return (
     <Card
       variant={CardVariant.DARK_GRAY}
-      className="flex flex-col mb-4 px-4 py-3.5"
+      className="mb-4 flex flex-col px-4 py-3.5"
       noPadding={true}
     >
-      <Label small className="tracking-wide text-fiatLightGray pb-1">{t`${label}`}</Label>
+      <Label
+        small
+        className="pb-1 tracking-wide text-fiatLightGray"
+      >{t`${label}`}</Label>
       <Label small className="tracking-wide text-white">{t`${data}`}</Label>
     </Card>
-  )
+  );
 }
 
 export default DetailCard;
