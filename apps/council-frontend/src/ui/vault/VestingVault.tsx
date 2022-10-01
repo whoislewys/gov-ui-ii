@@ -21,10 +21,7 @@ export default function VestingVault(props: {
     <VaultCard vaultTitle="Vesting Vault">
       <DetailCard label="Vested" data={vestedTokens} />
       <DetailCard label="Unvested Balance" data={unvestedTokens} />
-      <DetailCard
-        label="Voting Power"
-        data={`${vestingVaultVotingPower} FDT`}
-      />
+      <DetailCard label="Voting Power" data={`${vestingVaultVotingPower}`} />
       <div className="h-20" />
       <ActionCard
         onClick={() => setWithdrawModal()}

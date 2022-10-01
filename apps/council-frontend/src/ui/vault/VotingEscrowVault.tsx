@@ -36,7 +36,7 @@ export default function VotingEscrowVault(props: {
       <DetailCard label="Lock Expiration" data={lockEndDate || "-"} />
       <DetailCard
         label="Voting Power"
-        data={`${formatNumberToFixed(Number(votingPower))} FDT`}
+        data={`${formatNumberToFixed(Number(votingPower))}`}
       />
       <div className="flex w-full">
         <div className="mr-4 flex w-full flex-col">
